@@ -718,9 +718,9 @@
     
 
 
-    <!-- https://scheske.leander/ontology/cv#PassiveEnergieJapan -->
+    <!-- https://scheske.leander/ontology/cv#PassivEnergieJapan -->
 
-    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#PassiveEnergieJapan">
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#PassivEnergieJapan">
         <rdf:type rdf:resource="https://scheske.leander/ontology/cv#WorkPath"/>
         <hasDescription rdf:resource="https://scheske.leander/ontology/cv#PassivEnergieJapanDescription"/>
         <hasSummary rdf:resource="https://scheske.leander/ontology/cv#PassivEnergieJapanSummary"/>
@@ -829,7 +829,7 @@
         <hasWorkExperience rdf:resource="https://scheske.leander/ontology/cv#CrownEquipment"/>
         <hasWorkExperience rdf:resource="https://scheske.leander/ontology/cv#Pantopix2023"/>
         <hasWorkExperience rdf:resource="https://scheske.leander/ontology/cv#Pantopix2024"/>
-        <hasWorkExperience rdf:resource="https://scheske.leander/ontology/cv#PassiveEnergieJapan"/>
+        <hasWorkExperience rdf:resource="https://scheske.leander/ontology/cv#PassivEnergieJapan"/>
         <dateOfBirth>1999-06-26</dateOfBirth>
         <emailAddress>career@s-l-scheske.com</emailAddress>
         <fullName>Sascha Leander Scheske</fullName>
