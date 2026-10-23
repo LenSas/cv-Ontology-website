@@ -325,14 +325,16 @@
   }
 
   async function renderCards() {
+    const cards = document.getElementById('cards');
+    const resultCount = document.getElementById('resultCount');
+    const empty = document.getElementById('empty');
+
+    if (!cards || !resultCount || !empty) return;
+
     const list = getBaseEntries();
 
     makeChips('skillFilters', selectedSkills, list, 'skills');
     makeChips('techFilters', selectedTech, list, 'tech');
-
-    const cards = document.getElementById('cards');
-    const resultCount = document.getElementById('resultCount');
-    const empty = document.getElementById('empty');
 
     cards.innerHTML = '';
     resultCount.textContent = `${list.length} ${list.length === 1 ? 'Eintrag' : 'Einträge'}`;
@@ -366,6 +368,12 @@
   }
 
   async function loadOntologyAndBuildCV() {
+    const cards = document.getElementById('cards');
+    if (!cards) {
+      console.warn('CV page missing cards container; skipping RDF load.');
+      return;
+    }
+
     const store = $rdf.graph();
     const relativeUrl = 'ontology/CV-Ontology.rdf';
     const absoluteUrl = new URL(relativeUrl, window.location.href).href;
@@ -382,27 +390,35 @@
       renderCards();
     } catch (error) {
       console.error('Error loading RDF file:', error);
-      const cards = document.getElementById('cards');
-      if (cards) cards.innerHTML = `<p class="empty">Error loading RDF data: ${error.message}</p>`;
+      cards.innerHTML = `<p class="empty">Error loading RDF data: ${error.message}</p>`;
     }
   }
 
-  document.getElementById('search').addEventListener('input', renderCards);
+  const searchInput = document.getElementById('search');
+  if (searchInput) {
+    searchInput.addEventListener('input', renderCards);
+  }
+
   document.querySelectorAll('.typefilter').forEach(x => x.addEventListener('change', renderCards));
 
-  document.getElementById('clearFilters').onclick = () => {
-    document.getElementById('search').value = '';
-    document.querySelectorAll('.typefilter').forEach(x => x.checked = false);
-    selectedSkills.clear();
-    selectedTech.clear();
-    renderCards();
-  };
+  const clearButton = document.getElementById('clearFilters');
+  if (clearButton) {
+    clearButton.onclick = () => {
+      const search = document.getElementById('search');
+      if (search) search.value = '';
+      document.querySelectorAll('.typefilter').forEach(x => x.checked = false);
+      selectedSkills.clear();
+      selectedTech.clear();
+      renderCards();
+    };
+  }
 
   document.querySelectorAll('.tab').forEach(tab => {
     tab.onclick = () => {
       document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === tab));
       ['experienceView', 'profileView', 'graphView', 'detailView'].forEach(id => {
-        document.getElementById(id).classList.add('hidden');
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
       });
       const targetMap = {
         experience: 'experienceView',
@@ -410,7 +426,10 @@
         graph: 'graphView'
       };
       const target = targetMap[tab.dataset.tab];
-      if (target) document.getElementById(target).classList.remove('hidden');
+      if (target) {
+        const el = document.getElementById(target);
+        if (el) el.classList.remove('hidden');
+      }
     };
   });
 
