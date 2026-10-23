@@ -16,9 +16,9 @@
 </div>
 <section class="hero"><div><div class="eyebrow">Technical Communication · Information Architecture</div><h1>Experience, connected.</h1><p class="intro">An interactive exploration of my professional background, skills, and learning paths, derived from the RDF ontology and linked graph relationships.</p></div></section>
 <section id="experienceView"><div class="layout"><aside class="sidebar"><div class="sidehead"><h2>Filter</h2><button class="clear" id="clearFilters" type="button">Reset</button></div><div class="field"><label for="search">Search</label><input id="search" class="search" type="text" placeholder="Filter entries..." /></div>
-<div class="filter-group"><div class="field"><label>Entry type</label><div class="type-filter-list"><label><input class="typefilter" type="checkbox" value="Work Path"> Work Path</label><label><input class="typefilter" type="checkbox" value="Project"> Project</label><label><input class="typefilter" type="checkbox" value="Educational Path"> Educational Path</label></div></div></div>
-<div class="filter-group"><div class="field"><label>Skills</label><div id="skillFilters" class="chip-list"></div></div></div>
-<div class="filter-group"><div class="field"><label>Technologies</label><div id="techFilters" class="chip-list"></div></div></div></aside><div><div class="results-header"><div class="result-count" id="resultCount">0 Einträge</div></div><div id="cards" class="cards"></div><div id="empty" class="empty hidden">No entries match the current selection.</div></div></div></section>
+<label><input class="typefilter" type="checkbox" value="WorkPath"> Work Path</label>
+<label><input class="typefilter" type="checkbox" value="Project"> Project</label>
+<label><input class="typefilter" type="checkbox" value="EducationalPath"> Educational Path</label>
 <section id="profileView" class="hidden"></section>
 <section id="graphView" class="hidden"><div class="panel"><div class="eyebrow">Knowledge model</div><h2 style="margin:7px 0;font-size:25px;letter-spacing:-.04em">The CV as a graph</h2><p class="intro" style="max-width:760px">The ontology defines the relationships between the person, their education, work experience, projects and technologies. The site processes these relationships directly from the RDF graph.</p></div></section>
 <section id="detailView" class="hidden"></section>
@@ -88,6 +88,20 @@
     return store.any(subject, prop) || null;
   }
 
+  function getKindKey(store, node) {
+    const types = store.each(node, RDF('type'));
+
+    for (const type of types) {
+      const localName = iriLocalName(type);
+
+      if (['WorkPath', 'Project', 'EducationalPath'].includes(localName)) {
+        return localName.toLowerCase();
+      }
+    }
+
+    return '';
+  }
+
   function buildEntry(node) {
     const kind = getKindLabel(ontologyStore, node);
     const iriId = iriLocalName(node);
@@ -111,7 +125,7 @@
       id: title,
       iriId,
       kind,
-      kindKey: normalizeFilterValue(kind),
+      kindKey: getKindKey(ontologyStore, node),
 
       dates: [startDate, endDate].filter(Boolean).join(' — ') || '',
       company,
@@ -254,10 +268,12 @@
 
   function getBaseEntries() {
     const q = document.getElementById('search').value.toLowerCase().trim();
-    const checkedTypeKeys = [...document.querySelectorAll('.typefilter:checked')].map(x => normalizeFilterValue(x.value));
+    const checkedTypeKeys = [...document.querySelectorAll('.typefilter:checked')]
+      .map(x => x.value.toLowerCase());
 
     return entries.filter(e => {
-      const matchesType = checkedTypeKeys.length === 0 || checkedTypeKeys.includes(normalizeFilterValue(e.kind));
+      const matchesType = checkedTypeKeys.length === 0 ||
+        checkedTypeKeys.includes(e.kindKey);
       const matchesText = !q || [e.id, e.kind, e.company, e.role, ...(e.skills || []), ...(e.tech || [])].join(' ').toLowerCase().includes(q);
       const matchesSkill = [...selectedSkills].every(s => (e.skillKeys || []).includes(s));
       const matchesTech = [...selectedTech].every(t => (e.techKeys || []).includes(t));
