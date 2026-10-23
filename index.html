@@ -54,15 +54,21 @@
   // Hauptfunktion: Lädt und parst die RDF-Datei
   async function loadOntologyAndBuildCV() {
     const store = $rdf.graph();
-    const rdfUrl = 'ontology/CV-Ontology.rdf';
+    
+    const relativeUrl = 'ontology/CV-Ontology.rdf';
+
+    const absoluteUrl = new URL(relativeUrl, window.location.href).href;
 
     try {
-      const response = await fetch(rdfUrl);
+      const response = await fetch(relativeUrl);
       if (!response.ok) throw new Error("RDF-Datei konnte nicht geladen werden.");
       const rdfText = await response.text();
       
-      // In den RDF-Graph einlesen
-      $rdf.parse(rdfText, store, rdfUrl, 'application/rdf+xml');
+      $rdf.parse(rdfText, store, absoluteUrl, 'application/rdf+xml');
+
+      entries = []; // Array leeren
+      
+      // ... (hier geht dein restlicher Code wie gewohnt weiter)
 
       entries = []; // Array leeren
 
