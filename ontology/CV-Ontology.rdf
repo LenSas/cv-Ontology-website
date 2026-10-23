@@ -837,6 +837,15 @@
     
 
 
+    <!-- https://scheske.leander/ontology/cv#TestTestTest -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#TestTestTest">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>das ist ein test</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- https://scheske.leander/ontology/cv#TimeManagement -->
 
     <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#TimeManagement">
