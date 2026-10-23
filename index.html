@@ -15,7 +15,7 @@
   <button class="tab" data-tab="graph" type="button">Graph</button>
 </div>
 <section class="hero"><div><div class="eyebrow">Technical Communication · Information Architecture</div><h1>Experience, connected.</h1><p class="intro">An interactive exploration of my professional background, skills, and learning paths, derived from the RDF ontology and linked graph relationships.</p></div></section>
-<section id="experienceView"><div class="layout"><aside class="sidebar"><div class="sidehead"><h2>Filter</h2><button class="clear" id="clearFilters" type="button">Reset</button></div><div class="field"><label for="search">Search</label><input id="search" class="search" type="text" placeholder="Filter entries...</div>
+<section id="experienceView"><div class="layout"><aside class="sidebar"><div class="sidehead"><h2>Filter</h2><button class="clear" id="clearFilters" type="button">Reset</button></div><div class="field"><label for="search">Search</label><input id="search" class="search" type="text" placeholder="Filter entries..." /></div>
 <div class="filter-group"><div class="field"><label>Entry type</label><div class="type-filter-list"><label><input class="typefilter" type="checkbox" value="Work Path"> Work Path</label><label><input class="typefilter" type="checkbox" value="Project"> Project</label><label><input class="typefilter" type="checkbox" value="Educational Path"> Educational Path</label></div></div></div>
 <div class="filter-group"><div class="field"><label>Skills</label><div id="skillFilters" class="chip-list"></div></div></div>
 <div class="filter-group"><div class="field"><label>Technologies</label><div id="techFilters" class="chip-list"></div></div></div></aside><div><div class="results-header"><div class="result-count" id="resultCount">0 Einträge</div></div><div id="cards" class="cards"></div><div id="empty" class="empty hidden">No entries match the current selection.</div></div></div></section>
@@ -33,6 +33,10 @@
   let selectedSkills = new Set();
   let selectedTech = new Set();
   let ontologyStore = null;
+
+  function normalizeFilterValue(value) {
+    return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+  }
 
   function iriLocalName(node) {
     if (!node) return '';
@@ -243,13 +247,18 @@
 
   function getBaseEntries() {
     const q = document.getElementById('search').value.toLowerCase().trim();
-    const checkedTypes = [...document.querySelectorAll('.typefilter:checked')].map(x => x.value);
+    const checkedTypes = [...document.querySelectorAll('.typefilter:checked')].map(x => normalizeFilterValue(x.value));
 
     return entries.filter(e => {
-      const matchesType = checkedTypes.length === 0 || checkedTypes.includes(e.kind);
+      const entryKindKey = normalizeFilterValue(e.kind);
+      const matchesType = checkedTypes.length === 0 || checkedTypes.includes(entryKindKey);
       const matchesText = !q || [e.id, e.kind, e.company, e.role, ...e.skills, ...e.tech].join(' ').toLowerCase().includes(q);
-      const matchesSkill = [...selectedSkills].every(s => e.skills.includes(s));
-      const matchesTech = [...selectedTech].every(t => e.tech.includes(t));
+      const selectedSkillKeys = [...selectedSkills].map(normalizeFilterValue);
+      const selectedTechKeys = [...selectedTech].map(normalizeFilterValue);
+      const entrySkillKeys = (e.skills || []).map(normalizeFilterValue);
+      const entryTechKeys = (e.tech || []).map(normalizeFilterValue);
+      const matchesSkill = selectedSkillKeys.every(s => entrySkillKeys.includes(s));
+      const matchesTech = selectedTechKeys.every(t => entryTechKeys.includes(t));
       return matchesType && matchesText && matchesSkill && matchesTech;
     });
   }
