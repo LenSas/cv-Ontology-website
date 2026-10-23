@@ -6,14 +6,14 @@
   <!-- Rdflib.js für das Parsen von RDF/XML im Browser -->
 <script src="https://cdn.jsdelivr.net/npm/rdflib@2.2.32/dist/rdflib.min.js"></script>
 <style>
-:root{--bg:#f5f6f8;--panel:#fff;--ink:#17202b;--muted:#697586;--line:#e3e7ed;--accent:#3459d1;--accent-soft:#edf1ff;--green:#237a61;--shadow:0 8px 28px rgba(25,39,65,.055)}*{box-sizing:border-box}body[...]
+:root{--bg:#f5f6f8;--panel:#fff;--ink:#17202b;--muted:#697586;--line:#e3e7ed;--accent:#3459d1;--accent-soft:#edf1ff;--green:#237a61;--shadow:0 8px 28px rgba(25,39,65,.055)}*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,sans-serif;background:linear-gradient(180deg,#f8f9fb,#eef2f7);color:var(--ink)}a{text-decoration:none;color:var(--accent)}.shell{max-width:1180px;margin:0 auto;padding:28px 18px 50px}.topbar,.hero,.layout,.detail-panel,.panel{background:rgba(255,255,255,.74);backdrop-filter:blur(8px)}.topbar{border:1px solid var(--line);box-shadow:var(--shadow);border-radius:18px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.brand{font-weight:800;letter-spacing:.14em;font-size:12px}.brand span{color:var(--accent)}.topnote{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}.hero{border:1px solid var(--line);border-radius:24px;padding:26px 28px;box-shadow:var(--shadow);display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:18px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:800}.hero h1{margin:10px 0;font-size:clamp(34px,5vw,62px);line-height:.98;letter-spacing:-.06em}.intro{max-width:780px;color:var(--muted);font-size:16px;line-height:1.55;margin:0}.tabs{display:flex;gap:8px;flex-wrap:wrap}.tab{background:#f0f3fa;border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:700;color:var(--ink);cursor:pointer}.tab.active{background:var(--accent);color:white;border-color:var(--accent)}.layout{display:grid;grid-template-columns:260px 1fr;gap:18px;padding:18px;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}.sidebar{border-right:1px solid var(--line);padding-right:14px}.sidehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.sidehead h2{margin:0;font-size:22px;letter-spacing:-.04em}.clear{background:transparent;border:1px solid var(--line);padding:8px 10px;border-radius:8px;cursor:pointer;color:var(--ink)}.field{margin:14px 0}.field label{display:block;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}.field input.search{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#f9fafc;font:inherit}.checklist{display:grid;gap:8px}.typefilter{accent-color:var(--accent)}.chipbox{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.chip{border:1px solid var(--line);background:#f8f9fd;padding:8px 10px;border-radius:999px;font-size:12px;cursor:pointer;color:var(--ink)}.chip.active{background:var(--accent-soft);border-color:rgba(52,89,209,.2);color:var(--accent);font-weight:700}.cards{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;cursor:pointer;transition:.18s ease;box-shadow:0 8px 16px rgba(24,35,58,.02)}.card:hover{transform:translateY(-2px);box-shadow:0 16px 26px rgba(24,35,58,.06)}.cardtop{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}.kind{color:var(--accent);font-weight:800}.card h3{margin:14px 0 8px;font-size:23px;letter-spacing:-.04em}.company{font-size:13px;color:var(--muted)}.summary{margin:12px 0 14px;color:#2d3748;line-height:1.6;font-size:14px;min-height:72px}.tags{display:flex;flex-wrap:wrap;gap:6px}.tag{display:inline-flex;padding:6px 8px;border-radius:999px;background:#f3f5fb;border:1px solid var(--line);font-size:11px;color:#404d5f}.openhint{margin-top:16px;font-size:12px;font-weight:700;color:var(--accent)}.empty{padding:14px 0;color:var(--muted)}.hidden{display:none !important}.status{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0 10px}.status b{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}#resultCount{font-weight:700;color:var(--ink)}.panel{border:1px solid var(--line);box-shadow:var(--shadow);border-radius:24px;padding:20px}.profile-head{display:flex;align-items:center;gap:16px}.avatar{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6b82ff);display:grid;place-items:center;color:#fff;font-weight:700;letter-spacing:-.04em;font-size:24px;overflow:hidden;position:relative}.profile-avatar-img{display:block;width:100%;height:100%;object-fit:cover}.avatar-fallback{display:none;place-items:center;width:100%;height:100%;font-size:24px}.avatar .avatar-fallback.show{display:grid}.profile-head h2{margin:0;font-size:clamp(26px,4vw,42px);letter-spacing:-.06em}.profile-head p{margin:6px 0 0;color:var(--muted)}.profile-grid{display:grid;grid-template-columns:repeat(2,minmax(180px,1fr));gap:12px;margin-top:18px}.fact{padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fbfcff}.fact-label{display:block;font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:6px}.fact-value{font-size:15px}.detail-panel{border:1px solid var(--line);box-shadow:var(--shadow);border-radius:24px;padding:22px;background:rgba(255,255,255,.86)}.back{padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#f7f9fd;color:var(--ink);font-weight:700;cursor:pointer;margin-bottom:8px}.detail-meta{color:var(--muted);margin:8px 0 16px}.description-content{line-height:1.65;color:#293548}.description-content p{margin:0 0 14px}.detail-panel h3{margin:28px 0 10px;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.doclink{display:inline-block;background:var(--accent-soft);padding:10px 12px;border:1px solid rgba(52,89,209,.15);border-radius:10px;font-weight:700}.footer{padding-top:12px;font-size:12px;color:var(--muted);text-align:center}.graph-wrap{overflow:auto}.graph-wrap svg{width:100%;height:auto;display:block;border-radius:18px;background:linear-gradient(180deg,#f9fbff,#f4f7fd)}.legend{display:flex;flex-wrap:wrap;gap:10px;padding-top:12px;color:var(--muted);font-size:12px}.legend span{display:inline-flex;align-items:center;gap:6px}.legend span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;background:#dfe7ff}.legend span:nth-child(2):before{background:#e7f4ee}.legend span:nth-child(3):before{background:#f9f6d8}.legend span:nth-child(4):before{background:#dfe7ff}@media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{border-right:none;padding-right:0;border-bottom:1px solid var(--line);padding-bottom:18px}.cards{grid-template-columns:1fr 1fr}.hero{flex-direction:column;align-items:flex-start}.status{white-space:normal}.profile-grid{grid-template-columns:1fr}}@media(max-width:560px){.cards{grid-template-columns:1fr}.topbar{flex-direction:column;align-items:flex-start;gap:8px}.brand{letter-spacing:.08em}}.
 </style></head>
 <body><div class="shell">
-<header class="topbar"><div class="brand">S.L<span>.</span> SCHESKE <span style="font-weight:450;color:#8a94a3">/ ONTOLOGY CV</span></div><div class="topnote">A structured view of experience, skills &amp; learning pathways.</div></header>
-<section class="hero"><div><div class="eyebrow">Technical Communication · Information Architecture</div><h1>Experience, connected.</h1><p class="intro">An interactive exploration of my professional background, skills, and learning journey through a structured ontology.</p></div></section>
-<section id="experienceView"><div class="layout"><aside class="sidebar"><div class="sidehead"><h2>Filter</h2><button class="clear" id="clearFilters">Reset</button></div><div class="field"><label for="search">Search</label><input id="search" type="text" placeholder="Search CV..."></div><div class="field"><h3>Type</h3><label class="check"><input type="checkbox" class="typefilter" value="Work Path"> Work Path</label><label class="check"><input type="checkbox" class="typefilter" value="Project"> Project</label><label class="check"><input type="checkbox" class="typefilter" value="Educational Path"> Educational Path</label></div><div class="field"><h3>Skills</h3><div id="skillFilters" class="chipbox"></div></div><div class="field"><h3>Technologies</h3><div id="techFilters" class="chipbox"></div></div></aside><div class="content"><div class="cards-head"><div id="resultCount">0 Einträge</div></div><div id="cards" class="cards"></div><div id="empty" class="empty hidden">No entries match your filters.</div></div></div></section>
+<header class="topbar"><div class="brand">S.L<span>.</span> SCHESKE <span style="font-weight:450;color:#8a94a3">/ ONTOLOGY CV</span></div><div class="topnote">A structured view of experience, skills & knowledge</div></header>
+<section class="hero"><div><div class="eyebrow">Technical Communication · Information Architecture</div><h1>Experience, connected.</h1><p class="intro">An interactive exploration of my professional background.</p></div><nav class="tabs"><button class="tab active" data-tab="experience">Experience</button><button class="tab" data-tab="profile">Profile</button><button class="tab" data-tab="graph">RDF Graph</button></nav></section>
+<section id="experienceView"><div class="layout"><aside class="sidebar"><div class="sidehead"><h2>Filter</h2><button class="clear" id="clearFilters">Reset</button></div><div class="field"><label for="search">Search</label><input id="search" class="search" type="search" placeholder="Name, company, skill…"></div><div class="field"><label>Experience</label><div class="checklist"><label><input class="typefilter" type="checkbox" value="Work Path"> Work Path</label><label><input class="typefilter" type="checkbox" value="Project"> Project</label><label><input class="typefilter" type="checkbox" value="Educational Path"> Educational Path</label></div></div><div class="field"><label>Skills</label><div id="skillFilters" class="chipbox"></div></div><div class="field"><label>Technologies</label><div id="techFilters" class="chipbox"></div></div></aside><div><div class="status"><b>Results</b><span id="resultCount">0 Einträge</span></div><div id="cards" class="cards"></div><div id="empty" class="empty hidden">No entries match the selected filters.</div></div></div></section>
 <section id="profileView" class="hidden"></section>
-<section id="graphView" class="hidden"><div class="panel"><div class="eyebrow">Knowledge model</div><h2 style="margin:7px 0;font-size:25px;letter-spacing:-.04em">The CV as a graph</h2><p class="intro">This representation connects experience, skills, technologies, and education in a semantic structure.</p></div></section>
+<section id="graphView" class="hidden"><div class="panel"><div class="eyebrow">Knowledge model</div><h2 style="margin:7px 0;font-size:25px;letter-spacing:-.04em">The CV as a graph</h2><p class="intro" style="margin-bottom:16px">The data model is built from typed experience, skills, technologies, education and person relationships.</p><div class="graph-wrap"><svg viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ontology graph visualisation"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 z" fill="#7388a8"/></marker></defs><path class="edge" marker-end="url(#arrow)" d="M450 70 L220 150" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M450 70 L450 150" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M450 70 L680 150" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M220 195 L80 285" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M220 195 L220 285" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M220 195 L360 285" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M220 195 L540 285" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M680 195 L640 285" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M680 195 L770 285" stroke="#7388a8" stroke-width="2" fill="none"/><text class="edge-label" x="310" y="100" fill="#5f6e84" font-size="12">hasWorkExperience</text><text class="edge-label" x="464" y="115" fill="#5f6e84" font-size="12">hasEducation</text><text class="edge-label" x="565" y="100" fill="#5f6e84" font-size="12">hasSkill</text><text class="edge-label" x="55" y="250" fill="#5f6e84" font-size="12">hasSummary</text><text class="edge-label" x="245" y="250" fill="#5f6e84" font-size="12">hasDescription</text><text class="edge-label" x="360" y="250" fill="#5f6e84" font-size="12">usesTechnology</text><text class="edge-label" x="540" y="250" fill="#5f6e84" font-size="12">learnedSkill</text><text class="edge-label" x="620" y="250" fill="#5f6e84" font-size="12">partOf</text><text class="edge-label" x="775" y="250" fill="#5f6e84" font-size="12">hasDocument</text><g class="node core" data-open="profile"><rect x="340" y="25" width="220" height="46" rx="10" fill="#eef3ff" stroke="#cfe0ff"/><text x="450" y="53" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="700">Person · Sascha Scheske</text></g><g class="node" data-open="Crown Equipment"><rect x="125" y="150" width="190" height="45" rx="10" fill="#f1f6ff" stroke="#dfeaff"/><text x="220" y="177" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Work Path · Crown</text></g><g class="node" data-open="Bachelor Thesis"><rect x="355" y="150" width="190" height="45" rx="10" fill="#f1f6ff" stroke="#dfeaff"/><text x="450" y="177" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Education · UAS</text></g><g class="node" data-open="Knowledge Graph"><rect x="585" y="150" width="190" height="45" rx="10" fill="#f7f4d5" stroke="#efe5a8"/><text x="680" y="177" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Skill / Project</text></g><g class="node" data-open="Crown Equipment"><rect x="35" y="285" width="170" height="45" rx="10" fill="#eef6f2" stroke="#d5ebdf"/><text x="120" y="312" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Fragment · Summary</text></g><g class="node" data-open="Crown Equipment"><rect x="150" y="285" width="180" height="45" rx="10" fill="#eef6f2" stroke="#d5ebdf"/><text x="240" y="312" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Description</text></g><g class="node" data-open="Crown Equipment"><rect x="352" y="285" width="170" height="45" rx="10" fill="#eef6f2" stroke="#d5ebdf"/><text x="437" y="312" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Technology</text></g><g class="node" data-open="Crown Equipment"><rect x="530" y="285" width="170" height="45" rx="10" fill="#eef6f2" stroke="#d5ebdf"/><text x="615" y="312" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Skill</text></g><g class="node" data-open="Crown Equipment"><rect x="700" y="285" width="170" height="45" rx="10" fill="#eef6f2" stroke="#d5ebdf"/><text x="785" y="312" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Document</text></g></svg><div class="legend"><span>Person / core entity</span><span>Experience / resource</span><span>Skills / technologies</span><span>Arrows represent relationships</span></div></div></div></section>
 <section id="detailView" class="hidden"></section>
 <div class="footer">Prototype · Content and relationships are derived from the RDF ontology and linked resource naming conventions.</div></div>
 <script>
@@ -51,27 +51,12 @@
     return (value || '').trim();
   }
 
-  function escapeHtml(value) {
-    return String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-  }
-
-  function formatReadableDate(value) {
-    if (!value) return '';
-    const normalized = String(value).trim();
-    const match = normalized.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    if (!match) return normalized;
-    const [, year, month, day] = match;
-    const date = new Date(`${year}-${month}-${day}T00:00:00`);
-    if (Number.isNaN(date.getTime())) return normalized;
-    return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
-  }
-
   function getPersonNode(store) {
     const persons = store.each(undefined, RDF('type'), CV('Person'));
     return persons[0] || null;
   }
 
-  async function renderProfile(store) {
+  function renderProfile(store) {
     const person = getPersonNode(store);
     const profileView = document.getElementById('profileView');
     if (!profileView) return;
@@ -82,48 +67,31 @@
     const languages = person ? getListProps(store, person, CV('hasLanguage')) : [];
     const education = person ? getListProps(store, person, CV('hasEducation')) : [];
 
-    let profileSummary = 'A short introduction is not yet available.';
-    const summaryNode = person ? store.any(person, CV('hasSummary')) : null;
-    const summaryFile = summaryNode ? `content/summaries/${getIriId(summaryNode)}.txt` : 'content/summaries/PersonalSummary.txt';
-
-    try {
-      const res = await fetch(summaryFile);
-      if (res.ok) {
-        profileSummary = await res.text();
-      }
-    } catch (error) {
-      console.warn('Could not load profile summary:', error);
-    }
-
     const languageHtml = languages.length
-      ? languages.map(x => `<span class="tag">${escapeHtml(x)}</span>`).join('')
+      ? languages.map(x => `<span class="tag">${x}</span>`).join('')
       : '<span class="tag">—</span>';
 
     const educationHtml = education.length
-      ? education.map(x => `<span class="tag">${escapeHtml(x)}</span>`).join('')
+      ? education.map(x => `<span class="tag">${x}</span>`).join('')
       : '<span class="tag">—</span>';
 
     profileView.innerHTML = `
       <div class="panel">
         <div class="profile-head" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;">
-          <div class="avatar" style="width:140px;height:140px;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#eef2ff;color:#1c2d5d;font-weight:700;letter-spacing:-.04em;box-shadow:var(--shadow);">
-            <img src="images/SaschaBewerbung_18.3.23-9.jpg" alt="${escapeHtml(name)}" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <div class="avatar" style="width:140px;height:140px;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#eef2ff;color:#1c2d5d;font-weight:700;font-size:42px;">
+            <img src="images/SaschaBewerbung_18.3.23-9.jpg" alt="${name}" style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div>
-            <h2 style="margin:0 0 6px 0;">${escapeHtml(name)}</h2>
+            <h2 style="margin:0 0 6px 0;">${name}</h2>
             <p class="eyebrow">Technical Communication · Semantic Information Architecture</p>
             <div class="meta-row">
-              ${birthDate ? `<span><strong>Birth date:</strong> ${escapeHtml(formatReadableDate(birthDate))}</span>` : ''}
-              ${email ? `<span><strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></span>` : ''}
+              ${birthDate ? `<span>Birth date: ${birthDate}</span>` : ''}
+              ${email ? `<span>Email: ${email}</span>` : ''}
             </div>
           </div>
         </div>
 
         <div class="profile-grid" style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
-          <div class="profile-card" style="grid-column:1 / -1;">
-            <h3>About me</h3>
-            <p style="margin:0;line-height:1.7;color:var(--ink);white-space:pre-wrap;">${escapeHtml(profileSummary).replace(/\n/g, '<br>')}</p>
-          </div>
           <div class="profile-card">
             <h3>Education</h3>
             <div class="tags">${educationHtml}</div>
@@ -226,7 +194,7 @@
       $rdf.parse(rdfText, store, absoluteUrl, 'application/rdf+xml');
 
       parseEntries(store);
-      await renderProfile(store);
+      renderProfile(store);
       renderCards();
     } catch (error) {
       console.error('Fehler beim Laden der RDF-Datei:', error);
@@ -269,12 +237,12 @@
 
         <h3>Skills</h3>
         <div class="tags">
-          ${entry.skills.length ? entry.skills.map(x => `<span class="tag">${escapeHtml(x)}</span>`).join('') : '<span class="tag">—</span>'}
+          ${entry.skills.length ? entry.skills.map(x => `<span class="tag">${x}</span>`).join('') : '<span class="tag">—</span>'}
         </div>
 
         <h3>Technologien</h3>
         <div class="tags">
-          ${entry.tech.length ? entry.tech.map(x => `<span class="tag">${escapeHtml(x)}</span>`).join('') : '<span class="tag">—</span>'}
+          ${entry.tech.length ? entry.tech.map(x => `<span class="tag">${x}</span>`).join('') : '<span class="tag">—</span>'}
         </div>
       </div>
     `;
@@ -359,15 +327,15 @@
       card.tabIndex = 0;
       card.innerHTML = `
         <div class="cardtop">
-          <span class="kind">${escapeHtml(e.kind)}</span>
-          <span class="dates">${escapeHtml(e.dates)}</span>
+          <span class="kind">${e.kind}</span>
+          <span class="dates">${e.dates}</span>
         </div>
-        <h3>${escapeHtml(e.id)}</h3>
-        <div class="company">${escapeHtml(e.company)} · ${escapeHtml(e.role)}</div>
-        <p class="summary">${escapeHtml(summaryText).replace(/\n/g, '<br>')}</p>
+        <h3>${e.id}</h3>
+        <div class="company">${e.company} · ${e.role}</div>
+        <p class="summary">${summaryText}</p>
         <div class="tags">
           ${[...(e.skills || []).slice(0, 3), ...(e.tech || []).slice(0, 2)]
-            .map(t => `<span class="tag">${escapeHtml(t)}</span>`)
+            .map(t => `<span class="tag">${t}</span>`)
             .join('')}
         </div>
         <div class="openhint">Details ansehen ↗</div>
