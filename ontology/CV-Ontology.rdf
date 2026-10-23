@@ -1,0 +1,989 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="https://scheske.leander/ontology/cv#"
+     xml:base="https://scheske.leander/ontology/cv"
+     xmlns:cv="https://scheske.leander/ontology/cv#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="https://scheske.leander/ontology/cv"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#hasDescription -->
+
+    <owl:ObjectProperty rdf:about="https://scheske.leander/ontology/cv#hasDescription">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Experience"/>
+        <rdfs:range rdf:resource="https://scheske.leander/ontology/cv#Description"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#hasDocument -->
+
+    <owl:ObjectProperty rdf:about="https://scheske.leander/ontology/cv#hasDocument">
+        <rdfs:range rdf:resource="https://scheske.leander/ontology/cv#Document"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#hasEducation -->
+
+    <owl:ObjectProperty rdf:about="https://scheske.leander/ontology/cv#hasEducation">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Experience"/>
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Person"/>
+        <rdfs:range rdf:resource="https://scheske.leander/ontology/cv#EducationalPath"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#hasLanguage -->
+
+    <owl:ObjectProperty rdf:about="https://scheske.leander/ontology/cv#hasLanguage">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Person"/>
+        <rdfs:range rdf:resource="https://scheske.leander/ontology/cv#Language"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#hasSkill -->
+
+    <owl:ObjectProperty rdf:about="https://scheske.leander/ontology/cv#hasSkill">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Person"/>
+        <rdfs:range rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#hasSummary -->
+
+    <owl:ObjectProperty rdf:about="https://scheske.leander/ontology/cv#hasSummary">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Experience"/>
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Person"/>
+        <rdfs:range rdf:resource="https://scheske.leander/ontology/cv#Fragment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#hasWorkExperience -->
+
+    <owl:ObjectProperty rdf:about="https://scheske.leander/ontology/cv#hasWorkExperience">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Person"/>
+        <rdfs:range rdf:resource="https://scheske.leander/ontology/cv#WorkPath"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#learnedSkill -->
+
+    <owl:ObjectProperty rdf:about="https://scheske.leander/ontology/cv#learnedSkill">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Experience"/>
+        <rdfs:range rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#learnedTechnology -->
+
+    <owl:ObjectProperty rdf:about="https://scheske.leander/ontology/cv#learnedTechnology">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Experience"/>
+        <rdfs:range rdf:resource="https://scheske.leander/ontology/cv#Technology"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#partOf -->
+
+    <owl:ObjectProperty rdf:about="https://scheske.leander/ontology/cv#partOf">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Project"/>
+        <rdfs:range rdf:resource="https://scheske.leander/ontology/cv#EducationalPath"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#companyName -->
+
+    <owl:DatatypeProperty rdf:about="https://scheske.leander/ontology/cv#companyName">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#WorkPath"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#dateOfBirth -->
+
+    <owl:DatatypeProperty rdf:about="https://scheske.leander/ontology/cv#dateOfBirth">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#degreeName -->
+
+    <owl:DatatypeProperty rdf:about="https://scheske.leander/ontology/cv#degreeName">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#EducationalPath"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#emailAddress -->
+
+    <owl:DatatypeProperty rdf:about="https://scheske.leander/ontology/cv#emailAddress">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#employmentType -->
+
+    <owl:DatatypeProperty rdf:about="https://scheske.leander/ontology/cv#employmentType">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#WorkPath"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#endDate -->
+
+    <owl:DatatypeProperty rdf:about="https://scheske.leander/ontology/cv#endDate">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Experience"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#fieldOfStudy -->
+
+    <owl:DatatypeProperty rdf:about="https://scheske.leander/ontology/cv#fieldOfStudy">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#EducationalPath"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#fullName -->
+
+    <owl:DatatypeProperty rdf:about="https://scheske.leander/ontology/cv#fullName">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#languageLevel -->
+
+    <owl:DatatypeProperty rdf:about="https://scheske.leander/ontology/cv#languageLevel">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Language"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#startDate -->
+
+    <owl:DatatypeProperty rdf:about="https://scheske.leander/ontology/cv#startDate">
+        <rdfs:domain rdf:resource="https://scheske.leander/ontology/cv#Experience"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Description -->
+
+    <owl:Class rdf:about="https://scheske.leander/ontology/cv#Description">
+        <rdfs:subClassOf rdf:resource="https://scheske.leander/ontology/cv#InformationResource"/>
+        <rdfs:label>Description</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Document -->
+
+    <owl:Class rdf:about="https://scheske.leander/ontology/cv#Document">
+        <rdfs:subClassOf rdf:resource="https://scheske.leander/ontology/cv#InformationResource"/>
+        <rdfs:label>Document</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#EducationalPath -->
+
+    <owl:Class rdf:about="https://scheske.leander/ontology/cv#EducationalPath">
+        <rdfs:subClassOf rdf:resource="https://scheske.leander/ontology/cv#Experience"/>
+        <rdfs:label>Educational Path</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Experience -->
+
+    <owl:Class rdf:about="https://scheske.leander/ontology/cv#Experience">
+        <rdfs:label>Experience</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Fragment -->
+
+    <owl:Class rdf:about="https://scheske.leander/ontology/cv#Fragment">
+        <rdfs:subClassOf rdf:resource="https://scheske.leander/ontology/cv#InformationResource"/>
+        <rdfs:label>Fragment</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#InformationResource -->
+
+    <owl:Class rdf:about="https://scheske.leander/ontology/cv#InformationResource">
+        <rdfs:label>Information Resource</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Language -->
+
+    <owl:Class rdf:about="https://scheske.leander/ontology/cv#Language">
+        <rdfs:label>Language</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Person -->
+
+    <owl:Class rdf:about="https://scheske.leander/ontology/cv#Person">
+        <rdfs:label>Person</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Project -->
+
+    <owl:Class rdf:about="https://scheske.leander/ontology/cv#Project">
+        <rdfs:subClassOf rdf:resource="https://scheske.leander/ontology/cv#Experience"/>
+        <rdfs:label>Project</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Skill -->
+
+    <owl:Class rdf:about="https://scheske.leander/ontology/cv#Skill">
+        <rdfs:label>Skill</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Technology -->
+
+    <owl:Class rdf:about="https://scheske.leander/ontology/cv#Technology">
+        <rdfs:label>Technology</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#WorkPath -->
+
+    <owl:Class rdf:about="https://scheske.leander/ontology/cv#WorkPath">
+        <rdfs:subClassOf rdf:resource="https://scheske.leander/ontology/cv#Experience"/>
+        <rdfs:label>Work Path</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#AgileProjectManagement -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#AgileProjectManagement">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Agile Project Management</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#BachelorThesis -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#BachelorThesis">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Project"/>
+        <hasDescription rdf:resource="https://scheske.leander/ontology/cv#BachelorThesisDescription"/>
+        <hasSummary rdf:resource="https://scheske.leander/ontology/cv#BachelorThesisSummary"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#KnowledgeModeling"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#Research"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#iiRDS"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#Protégé"/>
+        <partOf rdf:resource="https://scheske.leander/ontology/cv#UniversitiesOfAppliedSciences"/>
+        <endDate>2026-09</endDate>
+        <startDate>2026-04</startDate>
+        <rdfs:label>Bachelor Thesis</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#BachelorThesisDescription -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#BachelorThesisDescription">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Description"/>
+        <rdfs:label>Bachelor Thesis Description</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#BachelorThesisSummary -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#BachelorThesisSummary">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Fragment"/>
+        <rdfs:label>Bachelor Thesis Summary</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#CCMS -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#CCMS">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Technology"/>
+        <rdfs:label>Component Content Management System (CCMS)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#CrownEquipment -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#CrownEquipment">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#WorkPath"/>
+        <hasDescription rdf:resource="https://scheske.leander/ontology/cv#CrownEquipmentDescription"/>
+        <hasSummary rdf:resource="https://scheske.leander/ontology/cv#CrownEquipmentSummary"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#DocumentationWorkflow"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#TechnicalWriting"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#TimeManagement"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#MicrosoftOfficePrograms"/>
+        <companyName>Crown Gabelstapler GmbH</companyName>
+        <employmentType>Working Student (20h/w)</employmentType>
+        <endDate>2026-03</endDate>
+        <startDate>2025-10</startDate>
+        <rdfs:label>Crown Equipment</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#CrownEquipmentDescription -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#CrownEquipmentDescription">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Description"/>
+        <rdfs:label>Crown Equipment Description</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#CrownEquipmentReference -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#CrownEquipmentReference">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Document"/>
+        <rdfs:label>Crown Equipment Reference</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#CrownEquipmentSummary -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#CrownEquipmentSummary">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Fragment"/>
+        <rdfs:label>Crown Equipment Summary</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#DITA -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#DITA">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Darwin Information Typing Architecture (DITA)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#DocsAsCode -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#DocsAsCode">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Docs as Code</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#DocumentationWorkflow -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#DocumentationWorkflow">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Documentation Workflow</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#English -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#English">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Language"/>
+        <languageLevel>Business proficiency</languageLevel>
+        <rdfs:label>English</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#FastLearning -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#FastLearning">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Fast Learning</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#German -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#German">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Language"/>
+        <languageLevel>Native</languageLevel>
+        <rdfs:label>German</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#GitHubPages -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#GitHubPages">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Technology"/>
+        <rdfs:label>GitHub Pages</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Graphifi -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Graphifi">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Technology"/>
+        <rdfs:label>Graphifi</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#InterculturalCommunication -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#InterculturalCommunication">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Intercultural Communication</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Japanese -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Japanese">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Language"/>
+        <languageLevel>Beginner</languageLevel>
+        <rdfs:label>Japanese</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#KnowledgeGraph -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#KnowledgeGraph">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Project"/>
+        <hasDescription rdf:resource="https://scheske.leander/ontology/cv#KnowledgeGraphDescription"/>
+        <hasSummary rdf:resource="https://scheske.leander/ontology/cv#KnowledgeGraphSummary"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#AgileProjectManagement"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#KnowledgeModeling"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#Graphifi"/>
+        <partOf rdf:resource="https://scheske.leander/ontology/cv#UniversitiesOfAppliedSciences"/>
+        <endDate>2024-08</endDate>
+        <startDate>2025-04</startDate>
+        <rdfs:label>Knowledge Graph</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#KnowledgeGraphDescription -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#KnowledgeGraphDescription">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Description"/>
+        <rdfs:label>Knowledge Graph Description</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#KnowledgeGraphSummary -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#KnowledgeGraphSummary">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Fragment"/>
+        <rdfs:label>Knowledge Graph Summary</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#KnowledgeModeling -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#KnowledgeModeling">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Knowledge Modeling</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Metalwork -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Metalwork">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Metalwork</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#MicrosoftOfficePrograms -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#MicrosoftOfficePrograms">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Technology"/>
+        <rdfs:label>Microsoft Office Prgrams</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#OxygenXML -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#OxygenXML">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Technology"/>
+        <rdfs:label>OxygenXML</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Pantopix2023 -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Pantopix2023">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#WorkPath"/>
+        <hasDescription rdf:resource="https://scheske.leander/ontology/cv#Pantopix2023Description"/>
+        <hasSummary rdf:resource="https://scheske.leander/ontology/cv#Pantopix2023Summary"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#AgileProjectManagement"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#DITA"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#KnowledgeModeling"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#TechnicalWriting"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#CCMS"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#MicrosoftOfficePrograms"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#SchemaST4"/>
+        <companyName>PANTOPIX GmbH &amp; Co. KG</companyName>
+        <employmentType>Working Student (20h/w)</employmentType>
+        <endDate>2024-03</endDate>
+        <startDate>2023-04</startDate>
+        <rdfs:label>PANTOPIX2023</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Pantopix2023Description -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Pantopix2023Description">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Description"/>
+        <rdfs:label>Pantopix2023 Description</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Pantopix2023Summary -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Pantopix2023Summary">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Fragment"/>
+        <rdfs:label>Pantopix2023 Summary</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Pantopix2024 -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Pantopix2024">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#WorkPath"/>
+        <hasDescription rdf:resource="https://scheske.leander/ontology/cv#Pantopix2024Description"/>
+        <hasSummary rdf:resource="https://scheske.leander/ontology/cv#Pantopix2024Summary"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#DocsAsCode"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#FastLearning"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#Research"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#TimeManagement"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#MicrosoftOfficePrograms"/>
+        <companyName>PANTOPIX GmbH &amp; Co. KG</companyName>
+        <employmentType>Working Student (20h/w)</employmentType>
+        <endDate>2025-07</endDate>
+        <startDate>2024-7</startDate>
+        <rdfs:label>PANTOPIX2024</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Pantopix2024Description -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Pantopix2024Description">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Description"/>
+        <rdfs:label>Pantopix2024 Description</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Pantopix2024Summary -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Pantopix2024Summary">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Fragment"/>
+        <rdfs:label>Pantopix2024 Summary</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#PantopixReference -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#PantopixReference">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Document"/>
+        <rdfs:label>Pantopix Reference</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#PassivEnergieJapanDescription -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#PassivEnergieJapanDescription">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Description"/>
+        <rdfs:label>Passiv Energie Japan Description</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#PassivEnergieJapanReference -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#PassivEnergieJapanReference">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Document"/>
+        <rdfs:label>Passiv Energie Japan Reference</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#PassivEnergieJapanSummary -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#PassivEnergieJapanSummary">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Fragment"/>
+        <rdfs:label>Passiv Energie Japan Summary</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#PassiveEnergieJapan -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#PassiveEnergieJapan">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#WorkPath"/>
+        <hasDescription rdf:resource="https://scheske.leander/ontology/cv#PassivEnergieJapanDescription"/>
+        <hasSummary rdf:resource="https://scheske.leander/ontology/cv#PassivEnergieJapanSummary"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#DITA"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#FastLearning"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#InterculturalCommunication"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#TechnicalWriting"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#MicrosoftOfficePrograms"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#OxygenXML"/>
+        <companyName>Passiv Energie Japan Inc.</companyName>
+        <employmentType>Intern (fulltime)</employmentType>
+        <endDate>2024-06</endDate>
+        <startDate>2024-02</startDate>
+        <rdfs:label>Passiv Energie Japan</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#PersonSummary -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#PersonSummary">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Fragment"/>
+        <rdfs:label>Person Summary</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Presenting -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Presenting">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Presenting</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Protégé -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Protégé">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Technology"/>
+        <rdfs:label>Protégé</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Research -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Research">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Research</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#ResumeAsOntology -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#ResumeAsOntology">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Project"/>
+        <hasDescription rdf:resource="https://scheske.leander/ontology/cv#ResumeAsOntologyDescription"/>
+        <hasSummary rdf:resource="https://scheske.leander/ontology/cv#ResumeAsOntologySummary"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#KnowledgeModeling"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#GitHubPages"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#Protégé"/>
+        <rdfs:label>Resume as Ontology</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#ResumeAsOntologyDescription -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#ResumeAsOntologyDescription">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Description"/>
+        <rdfs:label>Resume as Ontology Description</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#ResumeAsOntologySummary -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#ResumeAsOntologySummary">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Fragment"/>
+        <rdfs:label>Resume as Ontology Summary</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#SchemaST4 -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#SchemaST4">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Technology"/>
+        <rdfs:label>SchemaST4</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#Scheske -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#Scheske">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Person"/>
+        <hasEducation rdf:resource="https://scheske.leander/ontology/cv#SpecializedUpperSecondarySchool"/>
+        <hasEducation rdf:resource="https://scheske.leander/ontology/cv#UniversitiesOfAppliedSciences"/>
+        <hasLanguage rdf:resource="https://scheske.leander/ontology/cv#English"/>
+        <hasLanguage rdf:resource="https://scheske.leander/ontology/cv#German"/>
+        <hasLanguage rdf:resource="https://scheske.leander/ontology/cv#Japanese"/>
+        <hasSummary rdf:resource="https://scheske.leander/ontology/cv#PersonSummary"/>
+        <hasWorkExperience rdf:resource="https://scheske.leander/ontology/cv#CrownEquipment"/>
+        <hasWorkExperience rdf:resource="https://scheske.leander/ontology/cv#Pantopix2023"/>
+        <hasWorkExperience rdf:resource="https://scheske.leander/ontology/cv#Pantopix2024"/>
+        <hasWorkExperience rdf:resource="https://scheske.leander/ontology/cv#PassiveEnergieJapan"/>
+        <dateOfBirth>1999-06-26</dateOfBirth>
+        <emailAddress>career@s-l-scheske.com</emailAddress>
+        <fullName>Sascha Leander Scheske</fullName>
+        <rdfs:label>Scheske</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#SpecializedUpperSecondarySchool -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#SpecializedUpperSecondarySchool">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#EducationalPath"/>
+        <hasDescription rdf:resource="https://scheske.leander/ontology/cv#SpecializedUpperSecondarySchoolDescription"/>
+        <hasSummary rdf:resource="https://scheske.leander/ontology/cv#SpecializedUpperSecondarySchoolSummary"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#Metalwork"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#Presenting"/>
+        <degreeName>Advanced Technical College Entrance Qualification</degreeName>
+        <endDate>2021-08</endDate>
+        <fieldOfStudy>Technnology</fieldOfStudy>
+        <startDate>2018-09</startDate>
+        <rdfs:label>FOS Ansbach (Vocational Upper Secondary School)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#SpecializedUpperSecondarySchoolDescription -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#SpecializedUpperSecondarySchoolDescription">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Description"/>
+        <rdfs:label>Specialized Upper Secondary School Description</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#SpecializedUpperSecondarySchoolSummary -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#SpecializedUpperSecondarySchoolSummary">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Fragment"/>
+        <rdfs:label>Specialized Upper Secondary School Summary</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#TechnicalWriting -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#TechnicalWriting">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Technical Writing</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#TimeManagement -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#TimeManagement">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Time Management</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#UniversitiesOfAppliedSciences -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#UniversitiesOfAppliedSciences">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#EducationalPath"/>
+        <hasDescription rdf:resource="https://scheske.leander/ontology/cv#UniversityOfAppliedSciencesMunichDescription"/>
+        <hasSummary rdf:resource="https://scheske.leander/ontology/cv#UniversityOfAppliedSciencesMunichSummary"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#AgileProjectManagement"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#DITA"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#KnowledgeModeling"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#TechnicalWriting"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#iiRDS"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#CCMS"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#Graphifi"/>
+        <learnedTechnology rdf:resource="https://scheske.leander/ontology/cv#SchemaST4"/>
+        <degreeName>Bachelor of Engineering (B.Eng.)</degreeName>
+        <endDate>2026-09</endDate>
+        <fieldOfStudy>Technical Communication</fieldOfStudy>
+        <startDate>2021-10</startDate>
+        <rdfs:label>University of Applied Sciences Munich</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#UniversityMajorMarketingDescription -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#UniversityMajorMarketingDescription">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Description"/>
+        <rdfs:label>University Major Marketing Description</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#UniversityMajorMarketingSummary -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#UniversityMajorMarketingSummary">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Fragment"/>
+        <rdfs:label>University Major Marketing Summary</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#UniversityMarketing -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#UniversityMarketing">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Project"/>
+        <hasDescription rdf:resource="https://scheske.leander/ontology/cv#UniversityMajorMarketingDescription"/>
+        <hasSummary rdf:resource="https://scheske.leander/ontology/cv#UniversityMajorMarketingSummary"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#Presenting"/>
+        <learnedSkill rdf:resource="https://scheske.leander/ontology/cv#TimeManagement"/>
+        <partOf rdf:resource="https://scheske.leander/ontology/cv#UniversitiesOfAppliedSciences"/>
+        <endDate>2025-03</endDate>
+        <startDate>2024-09</startDate>
+        <rdfs:label>University Major Marketing</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#UniversityOfAppliedSciencesMunichDescription -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#UniversityOfAppliedSciencesMunichDescription">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Description"/>
+        <rdfs:label>University of Applied Sciences Munich Description</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#UniversityOfAppliedSciencesMunichReference -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#UniversityOfAppliedSciencesMunichReference">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Document"/>
+        <rdfs:label>University of Applied Sciences Munich Reference</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#UniversityOfAppliedSciencesMunichSummary -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#UniversityOfAppliedSciencesMunichSummary">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Fragment"/>
+        <rdfs:label>University of Applied Sciences Munich Summary</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://scheske.leander/ontology/cv#iiRDS -->
+
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#iiRDS">
+        <rdf:type rdf:resource="https://scheske.leander/ontology/cv#Skill"/>
+        <rdfs:label>Intelligent information Request and Delivery Standard (iiRDS)</rdfs:label>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
