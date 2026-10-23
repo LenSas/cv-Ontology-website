@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sascha Scheske — Ontology CV</title>
+  <!-- Rdflib.js für das Parsen von RDF/XML im Browser -->
+<script src="https://cdn.jsdelivr.net/npm/rdflib@2.2.32/dist/rdflib.min.js"></script>
 <style>
 :root{--bg:#f5f6f8;--panel:#fff;--ink:#17202b;--muted:#697586;--line:#e3e7ed;--accent:#3459d1;--accent-soft:#edf1ff;--green:#237a61;--shadow:0 8px 28px rgba(25,39,65,.055)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}.shell{max-width:1280px;margin:auto;padding:30px 28px 60px}.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px}.brand{font-weight:750;letter-spacing:-.04em;font-size:19px}.brand span{color:var(--accent)}.topnote{color:var(--muted);font-size:12px}.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:26px}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:750;color:var(--accent)}h1{font-size:clamp(30px,4vw,44px);line-height:1.08;letter-spacing:-.055em;margin:8px 0 10px}.intro{max-width:650px;color:#596577;margin:0}.status{white-space:nowrap;border:1px solid #d9e4de;background:#f1f8f4;color:var(--green);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:650}.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:22px}.tab{border:0;background:transparent;color:var(--muted);padding:13px 16px;margin-bottom:-1px;border-bottom:2px solid transparent;font-weight:650}.tab.active{color:var(--accent);border-color:var(--accent)}.layout{display:grid;grid-template-columns:258px minmax(0,1fr);gap:22px;align-items:start}.sidebar,.panel,.card,.detail-panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.sidebar{padding:19px;position:sticky;top:16px}.sidehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.sidehead h2{font-size:14px;margin:0}.clear{border:0;background:none;color:var(--accent);font-size:12px}.fieldlabel{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:750;color:var(--muted);margin:19px 0 9px}.search{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 12px;outline:none;background:#fbfcfd}.search:focus{border-color:var(--accent)}.checkrow{display:flex;align-items:center;gap:9px;padding:7px 0;color:#3b4656;font-size:13px}.checkrow input{accent-color:var(--accent)}.chips{display:flex;flex-wrap:wrap;gap:7px}.filterhint{font-size:10px;color:#8993a1;line-height:1.45;margin:8px 0 0}.chip{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 9px;font-size:11px;color:#4e5a6b}.chip.active{background:var(--accent-soft);border-color:#cbd5ff;color:var(--accent)}.contenthead{display:flex;justify-content:space-between;align-items:center;margin:1px 0 14px}.contenthead h2{font-size:17px;letter-spacing:-.025em;margin:0}.count{color:var(--muted);font-size:12px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{padding:19px;transition:transform .16s,border-color .16s;cursor:pointer;min-height:215px}.card:hover{transform:translateY(-2px);border-color:#c3cdf8}.cardtop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.kind{font-size:10px;letter-spacing:.09em;text-transform:uppercase;font-weight:750;color:var(--accent)}.dates{font-size:11px;color:var(--muted);white-space:nowrap}.card h3{font-size:19px;letter-spacing:-.035em;margin:9px 0 3px}.company{font-size:12px;color:var(--muted);margin-bottom:12px}.summary{font-size:13px;color:#566274;margin:0 0 15px;min-height:40px}.tags{display:flex;flex-wrap:wrap;gap:6px}.tag{font-size:10px;color:#475367;background:#f3f5f8;padding:5px 8px;border-radius:6px}.openhint{font-size:11px;color:var(--accent);margin-top:16px;font-weight:650}.empty{padding:50px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}.panel{padding:24px}.profilegrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.infobox{border:1px solid var(--line);border-radius:12px;padding:16px}.infobox h3{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0 0 10px}.infobox p{margin:0}.profile-head{display:flex;gap:18px;align-items:center;margin-bottom:24px}.avatar{width:72px;height:72px;border-radius:20px;background:linear-gradient(145deg,#dbe4ff,#aebfff);display:grid;place-items:center;color:#2746aa;font-weight:800;font-size:24px}.profile-head h2{margin:0;font-size:25px;letter-spacing:-.04em}.profile-head p{margin:4px 0 0;color:var(--muted)}.detail-panel{padding:26px}.back{border:0;background:none;padding:0;color:var(--accent);font-weight:650;margin-bottom:22px}.detail-panel h2{font-size:30px;letter-spacing:-.045em;margin:7px 0}.detail-meta{color:var(--muted);font-size:13px;margin-bottom:23px}.detail-panel h3{font-size:13px;margin:23px 0 9px}.detail-panel p{color:#4d596a}.doclink{display:inline-block;margin:4px 6px 0 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;color:var(--accent);text-decoration:none;font-size:12px}.graphintro{color:var(--muted);font-size:13px;margin-top:-4px}.graphbox{background:#fbfcff;border:1px solid var(--line);border-radius:14px;margin-top:18px;overflow:hidden}.graphbox svg{width:100%;height:auto;display:block;min-height:380px}.node{cursor:pointer}.node rect{fill:#fff;stroke:#cfd7e6;stroke-width:1.3;rx:10}.node text{font-size:12px;fill:#263449;text-anchor:middle}.node.core rect{fill:#edf1ff;stroke:#9eafff}.edge{stroke:#a8b3c5;stroke-width:1.5;fill:none}.edge-label{fill:#7a8799;font-size:10px}.legend{display:flex;flex-wrap:wrap;gap:14px;padding:12px 16px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.legend span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:3px;background:#dbe3ff;margin-right:6px}.legend span:nth-child(2):before{background:#d8eee5}.legend span:nth-child(3):before{background:#f6e8cc}.footer{color:#8a94a3;font-size:11px;margin-top:28px;text-align:center}.hidden{display:none!important}
 @media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{position:static}.cards{grid-template-columns:1fr 1fr}.hero{align-items:flex-start;flex-direction:column}.status{white-space:normal}}@media(max-width:560px){.shell{padding:18px 14px 40px}.cards,.profilegrid{grid-template-columns:1fr}.topnote{display:none}.card{min-height:0}.dates{white-space:normal;text-align:right}.tabs{overflow-x:auto}.tab{padding:12px 11px;white-space:nowrap}.panel{padding:17px}.graphbox svg{min-height:260px}}
@@ -24,55 +26,243 @@
 <section id="detailView" class="hidden"></section>
 <div class="footer">Prototype · Content and relationships will be connected to the published RDF and resource files in a later step.</div></div>
 <script>
-const entries=[
-{id:'Crown Equipment',kind:'Work Path',dates:'Oct 2025 — Mar 2026',company:'Crown Gabelstapler GmbH',role:'Working Student (20h/w)',summary:'Supported documentation workflows and a CCMS migration, including review and coordination tasks.',skills:['Documentation Workflow','Technical Writing','Time Management'],tech:['Microsoft Office Programs'],doc:'Crown Equipment Reference'},
-{id:'PANTOPIX 2024',kind:'Work Path',dates:'Jul 2024 — Jul 2025',company:'PANTOPIX GmbH & Co. KG',role:'Working Student (20h/w)',summary:'Worked on research, documentation and knowledge structuring, with a focus on reusable information.',skills:['Docs as Code','Fast Learning','Research','Time Management'],tech:['Microsoft Office Programs'],doc:'PANTOPIX Reference'},
-{id:'PANTOPIX 2023',kind:'Work Path',dates:'Apr 2023 — Mar 2024',company:'PANTOPIX GmbH & Co. KG',role:'Working Student (20h/w)',summary:'Contributed to technical writing, structured content and knowledge modeling in documentation projects.',skills:['Agile Project Management','DITA','Knowledge Modeling','Technical Writing'],tech:['CCMS','Microsoft Office Programs','SCHEMA ST4'],doc:'PANTOPIX Reference'},
-{id:'Passiv Energie Japan',kind:'Work Path',dates:'Feb 2024 — Jun 2024',company:'Passiv Energie Japan Inc.',role:'Intern (full-time)',summary:'Developed German and English technical documentation with DITA and Oxygen XML in an international startup.',skills:['DITA','Fast Learning','Intercultural Communication','Technical Writing'],tech:['Microsoft Office Programs','OxygenXML'],doc:'Passiv Energie Japan Reference'},
-{id:'Bachelor Thesis',kind:'Project',dates:'Apr 2026 — Sep 2026',company:'University of Applied Sciences Munich',role:'Bachelor thesis',summary:'Investigated the applicability of iiRDS for the Japanese market, including structural compatibility and cultural adaptation.',skills:['Knowledge Modeling','Research','iiRDS'],tech:['Protégé'],doc:'Bachelor thesis'},
-{id:'Knowledge Graph',kind:'Project',dates:'Apr 2025 — Aug 2025',company:'University of Applied Sciences Munich',role:'University project',summary:'Explored how knowledge can be represented and connected in a graph-based information model.',skills:['Agile Project Management','Knowledge Modeling'],tech:['Graphifi'],doc:''},
-{id:'Resume as Ontology',kind:'Project',dates:'Personal project',company:'Personal portfolio',role:'Ontology / website prototype',summary:'Models CV information as linked data, connecting experience, skills, technologies and information resources.',skills:['Knowledge Modeling'],tech:['GitHub Pages','Protégé'],doc:''},
-{id:'University Major Marketing',kind:'Project',dates:'Sep 2024 — Mar 2025',company:'University of Applied Sciences Munich',role:'University project',summary:'A team project focused on presenting and promoting a university study program.',skills:['Presenting','Time Management'],tech:[],doc:''},
-{id:'University of Applied Sciences Munich',kind:'Educational Path',dates:'Oct 2021 — Sep 2026',company:'Munich University of Applied Sciences',role:'Bachelor of Engineering (B.Eng.)',summary:'Studied Technical Communication, including technical writing, structured content, metadata and information management.',skills:['Agile Project Management','DITA','Knowledge Modeling','Technical Writing','iiRDS'],tech:['CCMS','Graphifi','SCHEMA ST4'],doc:'University of Applied Sciences Munich Reference'},
-{id:'FOS Ansbach',kind:'Educational Path',dates:'Sep 2018 — Aug 2021',company:'FOS Ansbach',role:'Advanced Technical College Entrance Qualification',summary:'Vocational upper secondary education with a focus on technology.',skills:['Metalwork','Presenting'],tech:[],doc:''}
-];
-function showDetail(e){currentEntry=e;document.getElementById('experienceView').classList.add('hidden');document.getElementById('profileView').classList.add('hidden');document.getElementById('graphView').classList.add('hidden');const d=document.getElementById('detailView');d.classList.remove('hidden');d.innerHTML=`<div class="detail-panel"><button class="back" id="back">← Back to experience</button><div class="eyebrow">${e.kind}</div><h2>${e.id}</h2><div class="detail-meta">${e.company} · ${e.role} · ${e.dates}</div><h3>Overview</h3><p>${e.summary}</p><h3>Skills</h3><div class="tags">${e.skills.map(x=>`<span class="tag">${x}</span>`).join('')||'—'}</div><h3>Technologies</h3><div class="tags">${e.tech.map(x=>`<span class="tag">${x}</span>`).join('')||'—'}</div><h3>Information resources</h3><p>In the final version, the linked summary (Fragment), full description (Topic) and documents will be loaded from their resource URLs.</p>${e.doc?`<span class="doclink">${e.doc} · link to be added</span>`:''}<p style="font-size:11px;color:#8993a1">Example detail text is currently based on the ontology labels and a provisional summary. It is not yet loaded from GitHub.</p></div>`;document.getElementById('back').onclick=()=>{d.classList.add('hidden');document.getElementById('experienceView').classList.remove('hidden')}}
-let selectedSkills=new Set(),selectedTech=new Set();let currentEntry=null;
-function getBaseEntries(){
- const q=document.getElementById('search').value.toLowerCase().trim();
- const checkedTypes=[...document.querySelectorAll('.typefilter:checked')].map(x=>x.value);
- return entries.filter(e=>(checkedTypes.length===0||checkedTypes.includes(e.kind))&&(!q||[e.id,e.kind,e.company,e.role,e.summary,...e.skills,...e.tech].join(' ').toLowerCase().includes(q))&&[...selectedSkills].every(s=>e.skills.includes(s))&&[...selectedTech].every(t=>e.tech.includes(t)));
-}
-function makeChips(id, items, selectedSet, baseList, field){
- const box=document.getElementById(id);box.innerHTML='';
- const allItems=[...new Set(entries.flatMap(e=>e[field]))].sort((a,b)=>a.localeCompare(b));
- const available=allItems.filter(item=>{
-   if(selectedSet.has(item)) return true;
-   const count=baseList.filter(e=>e[field].includes(item)).length;
-   return count>0 && count<baseList.length;
- });
- available.forEach(item=>{
-   const count=baseList.filter(e=>e[field].includes(item)).length;
-   const b=document.createElement('button');b.type='button';b.className='chip'+(selectedSet.has(item)?' active':'');
-   b.textContent=item+(selectedSet.has(item)?'':` · ${count}`);b.setAttribute('aria-pressed',String(selectedSet.has(item)));
-   b.onclick=()=>{if(selectedSet.has(item))selectedSet.delete(item);else selectedSet.add(item);renderCards()};
-   box.appendChild(b);
- });
- if(available.length===0){const note=document.createElement('span');note.className='filterhint';note.textContent=baseList.length<=1?'No further options for the current result.':'No additional options narrow these results.';box.appendChild(note)}
-}
-function renderCards(){
- const list=getBaseEntries();
- makeChips('skillFilters',[],selectedSkills,list,'skills');
- makeChips('techFilters',[],selectedTech,list,'tech');
- const box=document.getElementById('cards');box.innerHTML='';
- document.getElementById('resultCount').textContent=`${list.length} ${list.length===1?'entry':'entries'}`;
- document.getElementById('empty').classList.toggle('hidden',list.length>0);
- list.forEach(e=>{const c=document.createElement('article');c.className='card';c.tabIndex=0;c.innerHTML=`<div class="cardtop"><span class="kind">${e.kind}</span><span class="dates">${e.dates}</span></div><h3>${e.id}</h3><div class="company">${e.company} · ${e.role}</div><p class="summary">${e.summary}</p><div class="tags">${[...e.skills.slice(0,3),...e.tech.slice(0,2)].map(t=>`<span class="tag">${t}</span>`).join('')}</div><div class="openhint">View details ↗</div>`;c.onclick=()=>showDetail(e);c.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();showDetail(e)}};box.appendChild(c)});
-}
-renderCards();
-document.getElementById('search').addEventListener('input',renderCards);
-document.querySelectorAll('.typefilter').forEach(x=>x.addEventListener('change',renderCards));
-document.getElementById('clearFilters').onclick=()=>{document.getElementById('search').value='';document.querySelectorAll('.typefilter').forEach(x=>x.checked=false);selectedSkills.clear();selectedTech.clear();renderCards()};
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===t));['experienceView','profileView','graphView','detailView'].forEach(id=>document.getElementById(id).classList.add('hidden'));document.getElementById(({experience:'experienceView',profile:'profileView',graph:'graphView'})[t.dataset.tab]).classList.remove('hidden')});
-document.querySelectorAll('.node').forEach(n=>n.addEventListener('click',()=>{if(n.dataset.open==='profile'){document.querySelector('[data-tab="profile"]').click();return}const e=entries.find(x=>x.id===n.dataset.open||x.skills.includes(n.dataset.open));if(e)showDetail(e)}));
+<script>
+  // Namespace-Definitionen basierend auf deiner RDF-Ontologie
+  const CV = $rdf.Namespace("https://scheske.leander/ontology/cv#");
+  const RDF = $rdf.Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#");
+  const RDFS = $rdf.Namespace("http://www.w3.org/2000/01/rdf-schema#");
+
+  let entries = [];
+  let selectedSkills = new Set(), selectedTech = new Set();
+  let currentEntry = null;
+
+  // Hilfsfunktionen zum Auslesen aus dem RDF-Store
+  function getLabel(store, ind) {
+    const label = store.any(ind, RDFS('label'));
+    return label ? label.value : ind.value.split('#').pop();
+  }
+
+  function getDataProp(store, ind, prop) {
+    const val = store.any(ind, prop);
+    return val ? val.value : '';
+  }
+
+  function getListProps(store, ind, prop) {
+    const nodes = store.each(ind, prop);
+    return nodes.map(n => getLabel(store, n));
+  }
+
+  // Hauptfunktion: Lädt und parst die RDF-Datei
+  async function loadOntologyAndBuildCV() {
+    const store = $rdf.graph();
+    const rdfUrl = 'ontology/CV-Ontology.rdf';
+
+    try {
+      const response = await fetch(rdfUrl);
+      if (!response.ok) throw new Error("RDF-Datei konnte nicht geladen werden.");
+      const rdfText = await response.text();
+      
+      // In den RDF-Graph einlesen
+      $rdf.parse(rdfText, store, rdfUrl, 'application/rdf+xml');
+
+      entries = []; // Array leeren
+
+      // 1. Work Paths (Berufserfahrungen) auslesen
+      store.each(undefined, RDF('type'), CV('WorkPath')).forEach(ind => {
+        const id = getLabel(store, ind);
+        entries.push({
+          id: id,
+          kind: 'Work Path',
+          dates: `${getDataProp(store, ind, CV('startDate'))} — ${getDataProp(store, ind, CV('endDate'))}`,
+          company: getDataProp(store, ind, CV('companyName')),
+          role: getDataProp(store, ind, CV('employmentType')) || 'Working Student / Intern',
+          summaryFile: `content/summaries/${id}Summary.txt`,
+          descriptionFile: `content/descriptions/${id}Description.html`,
+          skills: getListProps(store, ind, CV('learnedSkill')),
+          tech: getListProps(store, ind, CV('learnedTechnology')),
+          doc: `dokumente/${id}Reference.pdf` // Zeugnis-Verknüpfung
+        });
+      });
+
+      // 2. Projects (Projekte & Bachelorarbeit) auslesen
+      store.each(undefined, RDF('type'), CV('Project')).forEach(ind => {
+        const id = getLabel(store, ind);
+        entries.push({
+          id: id,
+          kind: 'Project',
+          dates: `${getDataProp(store, ind, CV('startDate'))} — ${getDataProp(store, ind, CV('endDate'))}`,
+          company: 'University of Applied Sciences Munich / Personal',
+          role: id,
+          summaryFile: `content/summaries/${id}Summary.txt`,
+          descriptionFile: `content/descriptions/${id}Description.html`,
+          skills: getListProps(store, ind, CV('learnedSkill')),
+          tech: getListProps(store, ind, CV('learnedTechnology')),
+          doc: ''
+        });
+      });
+
+      // 3. Educational Paths (Ausbildung / Studium) auslesen
+      store.each(undefined, RDF('type'), CV('EducationalPath')).forEach(ind => {
+        const id = getLabel(store, ind);
+        entries.push({
+          id: id,
+          kind: 'Educational Path',
+          dates: `${getDataProp(store, ind, CV('startDate'))} — ${getDataProp(store, ind, CV('endDate'))}`,
+          company: getDataProp(store, ind, CV('fieldOfStudy')),
+          role: getDataProp(store, ind, CV('degreeName')),
+          summaryFile: `content/summaries/${id}Summary.txt`,
+          descriptionFile: `content/descriptions/${id}Description.html`,
+          skills: getListProps(store, ind, CV('learnedSkill')),
+          tech: getListProps(store, ind, CV('learnedTechnology')),
+          doc: `dokumente/${id}Reference.pdf`
+        });
+      });
+
+      console.log("Erfolgreich aus RDF geladene Einträge:", entries);
+
+      // UI initialisieren, sobald Daten da sind
+      renderCards();
+
+    } catch (error) {
+      console.error("Fehler beim Parsen der Ontologie:", error);
+      document.getElementById('cards').innerHTML = `<p class="empty">Fehler beim Laden der RDF-Datei: ${error.message}</p>`;
+    }
+  }
+
+  // --- UI-Render-Funktionen ---
+  
+  async function showDetail(e) {
+    document.getElementById('experienceView').classList.add('hidden');
+    document.getElementById('profileView').classList.add('hidden');
+    document.getElementById('graphView').classList.add('hidden');
+    
+    const d = document.getElementById('detailView');
+    d.classList.remove('hidden');
+
+    // Ausführliche Beschreibung aus dem Ordner content/descriptions/ nachladen
+    let fullDescription = "Ausführliche Beschreibung wird geladen...";
+    if (e.descriptionFile) {
+      try {
+        const res = await fetch(e.descriptionFile);
+        if (res.ok) fullDescription = await res.text();
+        else fullDescription = "Keine Beschreibung hinterlegt.";
+      } catch (err) {
+        fullDescription = "Fehler beim Laden der Beschreibung.";
+      }
+    }
+
+    d.innerHTML = `
+      <div class="detail-panel">
+        <button class="back" id="back">← Zurück zur Übersicht</button>
+        <div class="eyebrow">${e.kind}</div>
+        <h2>${e.id}</h2>
+        <div class="detail-meta">${e.company} · ${e.role} · ${e.dates}</div>
+        
+        <h3>Beschreibung</h3>
+        <div class="description-content">${fullDescription}</div>
+
+        <h3>Skills</h3>
+        <div class="tags">${e.skills.map(x => `<span class="tag">${x}</span>`).join('') || '—'}</div>
+
+        <h3>Technologien</h3>
+        <div class="tags">${e.tech.map(x => `<span class="tag">${x}</span>`).join('') || '—'}</div>
+
+        <h3>Dokumente</h3>
+        ${e.doc ? `<a href="${e.doc}" target="_blank" class="doclink">🔒 Dokument öffnen (Passwortschutz möglich)</a>` : '<p style="font-size:12px;color:var(--muted)">Kein Dokument verknüpft.</p>'}
+      </div>
+    `;
+
+    document.getElementById('back').onclick = () => {
+      d.classList.add('hidden');
+      document.getElementById('experienceView').classList.remove('hidden');
+    };
+  }
+
+  function getBaseEntries() {
+    const q = document.getElementById('search').value.toLowerCase().trim();
+    const checkedTypes = [...document.querySelectorAll('.typefilter:checked')].map(x => x.value);
+    return entries.filter(e => 
+      (checkedTypes.length === 0 || checkedTypes.includes(e.kind)) &&
+      (!q || [e.id, e.kind, e.company, e.role, ...e.skills, ...e.tech].join(' ').toLowerCase().includes(q)) &&
+      [...selectedSkills].every(s => e.skills.includes(s)) &&
+      [...selectedTech].every(t => e.tech.includes(t))
+    );
+  }
+
+  function makeChips(id, items, selectedSet, baseList, field) {
+    const box = document.getElementById(id); box.innerHTML = '';
+    const allItems = [...new Set(entries.flatMap(e => e[field]))].sort((a,b) => a.localeCompare(b));
+    const available = allItems.filter(item => {
+      if (selectedSet.has(item)) return true;
+      const count = baseList.filter(e => e[field].includes(item)).length;
+      return count > 0 && count < baseList.length;
+    });
+    available.forEach(item => {
+      const count = baseList.filter(e => e[field].includes(item)).length;
+      const b = document.createElement('button'); b.type = 'button';
+      b.className = 'chip' + (selectedSet.has(item) ? ' active' : '');
+      b.textContent = item + (selectedSet.has(item) ? '' : ` · ${count}`);
+      b.onclick = () => {
+        if (selectedSet.has(item)) selectedSet.delete(item); else selectedSet.add(item);
+        renderCards();
+      };
+      box.appendChild(b);
+    });
+  }
+
+  async function renderCards() {
+    const list = getBaseEntries();
+    makeChips('skillFilters', [], selectedSkills, list, 'skills');
+    makeChips('techFilters', [], selectedTech, list, 'tech');
+    
+    const box = document.getElementById('cards'); box.innerHTML = '';
+    document.getElementById('resultCount').textContent = `${list.length} ${list.length === 1 ? 'Eintrag' : 'Einträge'}`;
+    document.getElementById('empty').classList.toggle('hidden', list.length > 0);
+
+    for (const e of list) {
+      // Teaser-Text aus content/summaries/ dynamisch laden
+      let summaryText = "Zusammenfassung wird geladen...";
+      if (e.summaryFile) {
+        try {
+          const res = await fetch(e.summaryFile);
+          if (res.ok) summaryText = await res.text();
+          else summaryText = "Kein Teaser verfügbar.";
+        } catch (err) {
+          summaryText = "Fehler beim Laden des Teasers.";
+        }
+      }
+
+      const c = document.createElement('article');
+      c.className = 'card';
+      c.tabIndex = 0;
+      c.innerHTML = `
+        <div class="cardtop"><span class="kind">${e.kind}</span><span class="dates">${e.dates}</span></div>
+        <h3>${e.id}</h3>
+        <div class="company">${e.company} · ${e.role}</div>
+        <p class="summary">${summaryText}</p>
+        <div class="tags">${[...e.skills.slice(0,3), ...e.tech.slice(0,2)].map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <div class="openhint">Details ansehen ↗</div>
+      `;
+      c.onclick = () => showDetail(e);
+      box.appendChild(c);
+    }
+  }
+
+  // Event Listener initialisieren
+  document.getElementById('search').addEventListener('input', renderCards);
+  document.querySelectorAll('.typefilter').forEach(x => x.addEventListener('change', renderCards));
+  document.getElementById('clearFilters').onclick = () => {
+    document.getElementById('search').value = '';
+    document.querySelectorAll('.typefilter').forEach(x => x.checked = false);
+    selectedSkills.clear(); selectedTech.clear();
+    renderCards();
+  };
+  document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
+    ['experienceView', 'profileView', 'graphView', 'detailView'].forEach(id => document.getElementById(id).classList.add('hidden'));
+    document.getElementById(({experience: 'experienceView', profile: 'profileView', graph: 'graphView'})[t.dataset.tab]).classList.remove('hidden');
+  });
+
+  // Startschuss: Ontologie beim Laden der Seite einlesen
+  loadOntologyAndBuildCV();
 </script></body></html>
