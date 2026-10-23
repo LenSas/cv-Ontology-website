@@ -1,1 +1,1 @@
-Bachelor Summer test
+Evaluated the applicability of iiRDS for the Japanese market through standards analysis and the conceptual development of a market-specific ontology extension.
