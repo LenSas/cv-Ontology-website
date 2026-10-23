@@ -24,6 +24,10 @@
   let entries = [];
   let selectedSkills = new Set(), selectedTech = new Set();
 
+  function normalizeText(value) {
+    return String(value || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, ' ');
+  }
+
   function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>\"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
   }
@@ -145,14 +149,15 @@
       id: title,
       iri: ind.value,
       kind,
+      kindKey: normalizeText(kind),
       dates: dates || 'Date not specified',
       company: getCompanyName(store, ind),
       role: getEntryRole(store, ind, kind),
       summaryFile: buildGuessFile(ind, 'summary'),
       descriptionFile: buildGuessFile(ind, 'description'),
       doc: buildGuessFile(ind, 'document'),
-      skills: getListProps(store, ind, CV('learnedSkill')).concat(getListProps(store, ind, CV('hasSkill'))),
-      tech: getListProps(store, ind, CV('learnedTechnology')),
+      skills: [...new Set(getListProps(store, ind, CV('learnedSkill')).concat(getListProps(store, ind, CV('hasSkill'))))],
+      tech: [...new Set(getListProps(store, ind, CV('learnedTechnology')))],
       facts: buildDynamicFacts(store, ind)
     };
   }
@@ -266,9 +271,10 @@
 
   function getBaseEntries() {
     const q = document.getElementById('search').value.toLowerCase().trim();
-    const checkedTypes = [...document.querySelectorAll('.typefilter:checked')].map(x => x.value);
+    const checkedTypes = [...document.querySelectorAll('.typefilter:checked')].map(x => normalizeText(x.value));
+
     return entries.filter(e =>
-      (checkedTypes.length === 0 || checkedTypes.includes(e.kind)) &&
+      (checkedTypes.length === 0 || checkedTypes.includes(e.kindKey)) &&
       (!q || [e.id, e.kind, e.company, e.role, ...e.skills, ...e.tech].join(' ').toLowerCase().includes(q)) &&
       [...selectedSkills].every(s => e.skills.includes(s)) &&
       [...selectedTech].every(t => e.tech.includes(t))
