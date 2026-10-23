@@ -25,7 +25,7 @@
   let selectedSkills = new Set(), selectedTech = new Set();
 
   function escapeHtml(value) {
-    return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    return String(value ?? '').replace(/[&<>\"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
   }
 
   function getIriId(ind) {
@@ -356,11 +356,11 @@
       if (person) renderProfile(store, person);
 
       entries = [];
-      const experienceNodes = store.each(undefined, RDF('type'), undefined)
-        .map(q => q.subject)
-        .filter((item, index, arr) => arr.findIndex(x => x.value === item.value) === index)
-        .filter(ind => isExperienceInstance(store, ind));
 
+      const uniqueSubjects = store.each(undefined, RDF('type'), undefined)
+        .filter((item, index, arr) => arr.findIndex(x => x.value === item.value) === index);
+
+      const experienceNodes = uniqueSubjects.filter(ind => isExperienceInstance(store, ind));
       experienceNodes.forEach(ind => entries.push(makeEntryFromExperience(store, ind)));
       entries.sort((a, b) => a.id.localeCompare(b.id));
 
