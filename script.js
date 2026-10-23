@@ -189,7 +189,7 @@ function parseExperiences() {
         skills: skills,
         technologies: techs,
         summaryFile: `content/summaries/${iriId}Summary.txt`,
-        descriptionFile: `content/descriptions/${iriId}Description.html`,
+        descriptionFile: `content/descriptions/${iriId}Description.txt`,
         sharepointUrl: SHAREPOINT_CONFIG[iriId] || ''
       });
     });
@@ -471,19 +471,20 @@ async function openDetailModal(entry) {
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
 
-  // Attempt to load description HTML file
+  // NEU: Lädt jetzt eine .txt-Datei und formatiert Textabsätze automatisch
   try {
     const res = await fetch(entry.descriptionFile);
     const descBody = document.getElementById('modal-desc-body');
     if (res.ok) {
-      const htmlContent = await res.text();
-      descBody.innerHTML = htmlContent;
+      const textContent = await res.text();
+      // Wandelt Zeilenumbrüche aus der .txt in schöne <p>-Tags um
+      descBody.innerHTML = textContent.split('\n\n').map(p => `<p>${p}</p>`).join('');
     } else {
-      descBody.innerHTML = `<p>Detailed description file not found. Please add <code>${entry.iriId}Description.html</code> in the descriptions folder.</p>`;
+      descBody.innerHTML = `<p>Beschreibung noch nicht verfügbar. Bitte erstelle die Textdatei <code>${entry.iriId}Description.txt</code> im Ordner <code>content/descriptions/</code>.</p>`;
     }
   } catch (err) {
     const descBody = document.getElementById('modal-desc-body');
-    descBody.innerHTML = `<p>Unable to load description file.</p>`;
+    descBody.innerHTML = `<p>Beschreibung konnte nicht geladen werden.</p>`;
   }
 }
 
