@@ -1,0 +1,1 @@
+Developed a knowledge graph concept for an external industry partner, covering product landscape analysis, metadata modelling, taxonomy development and ontology extension.
