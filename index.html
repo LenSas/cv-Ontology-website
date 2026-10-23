@@ -6,183 +6,255 @@
   <!-- Rdflib.js für das Parsen von RDF/XML im Browser -->
 <script src="https://cdn.jsdelivr.net/npm/rdflib@2.2.32/dist/rdflib.min.js"></script>
 <style>
-:root{--bg:#f5f6f8;--panel:#fff;--ink:#17202b;--muted:#697586;--line:#e3e7ed;--accent:#3459d1;--accent-soft:#edf1ff;--green:#237a61;--shadow:0 8px 28px rgba(25,39,65,.055)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}.shell{max-width:1280px;margin:auto;padding:30px 28px 60px}.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px}.brand{font-weight:750;letter-spacing:-.04em;font-size:19px}.brand span{color:var(--accent)}.topnote{color:var(--muted);font-size:12px}.hero{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:26px}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:750;color:var(--accent)}h1{font-size:clamp(30px,4vw,44px);line-height:1.08;letter-spacing:-.055em;margin:8px 0 10px}.intro{max-width:650px;color:#596577;margin:0}.status{white-space:nowrap;border:1px solid #d9e4de;background:#f1f8f4;color:var(--green);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:650}.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:22px}.tab{border:0;background:transparent;color:var(--muted);padding:13px 16px;margin-bottom:-1px;border-bottom:2px solid transparent;font-weight:650}.tab.active{color:var(--accent);border-color:var(--accent)}.layout{display:grid;grid-template-columns:258px minmax(0,1fr);gap:22px;align-items:start}.sidebar,.panel,.card,.detail-panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}.sidebar{padding:19px;position:sticky;top:16px}.sidehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.sidehead h2{font-size:14px;margin:0}.clear{border:0;background:none;color:var(--accent);font-size:12px}.fieldlabel{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:750;color:var(--muted);margin:19px 0 9px}.search{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 12px;outline:none;background:#fbfcfd}.search:focus{border-color:var(--accent)}.checkrow{display:flex;align-items:center;gap:9px;padding:7px 0;color:#3b4656;font-size:13px}.checkrow input{accent-color:var(--accent)}.chips{display:flex;flex-wrap:wrap;gap:7px}.filterhint{font-size:10px;color:#8993a1;line-height:1.45;margin:8px 0 0}.chip{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 9px;font-size:11px;color:#4e5a6b}.chip.active{background:var(--accent-soft);border-color:#cbd5ff;color:var(--accent)}.contenthead{display:flex;justify-content:space-between;align-items:center;margin:1px 0 14px}.contenthead h2{font-size:17px;letter-spacing:-.025em;margin:0}.count{color:var(--muted);font-size:12px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{padding:19px;transition:transform .16s,border-color .16s;cursor:pointer;min-height:215px}.card:hover{transform:translateY(-2px);border-color:#c3cdf8}.cardtop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.kind{font-size:10px;letter-spacing:.09em;text-transform:uppercase;font-weight:750;color:var(--accent)}.dates{font-size:11px;color:var(--muted);white-space:nowrap}.card h3{font-size:19px;letter-spacing:-.035em;margin:9px 0 3px}.company{font-size:12px;color:var(--muted);margin-bottom:12px}.summary{font-size:13px;color:#566274;margin:0 0 15px;min-height:40px}.tags{display:flex;flex-wrap:wrap;gap:6px}.tag{font-size:10px;color:#475367;background:#f3f5f8;padding:5px 8px;border-radius:6px}.openhint{font-size:11px;color:var(--accent);margin-top:16px;font-weight:650}.empty{padding:50px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}.panel{padding:24px}.profilegrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.infobox{border:1px solid var(--line);border-radius:12px;padding:16px}.infobox h3{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:0 0 10px}.infobox p{margin:0}.profile-head{display:flex;gap:18px;align-items:center;margin-bottom:24px}.avatar{width:72px;height:72px;border-radius:20px;background:linear-gradient(145deg,#dbe4ff,#aebfff);display:grid;place-items:center;color:#2746aa;font-weight:800;font-size:24px}.profile-head h2{margin:0;font-size:25px;letter-spacing:-.04em}.profile-head p{margin:4px 0 0;color:var(--muted)}.detail-panel{padding:26px}.back{border:0;background:none;padding:0;color:var(--accent);font-weight:650;margin-bottom:22px}.detail-panel h2{font-size:30px;letter-spacing:-.045em;margin:7px 0}.detail-meta{color:var(--muted);font-size:13px;margin-bottom:23px}.detail-panel h3{font-size:13px;margin:23px 0 9px}.detail-panel p{color:#4d596a}.doclink{display:inline-block;margin:4px 6px 0 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;color:var(--accent);text-decoration:none;font-size:12px}.graphintro{color:var(--muted);font-size:13px;margin-top:-4px}.graphbox{background:#fbfcff;border:1px solid var(--line);border-radius:14px;margin-top:18px;overflow:hidden}.graphbox svg{width:100%;height:auto;display:block;min-height:380px}.node{cursor:pointer}.node rect{fill:#fff;stroke:#cfd7e6;stroke-width:1.3;rx:10}.node text{font-size:12px;fill:#263449;text-anchor:middle}.node.core rect{fill:#edf1ff;stroke:#9eafff}.edge{stroke:#a8b3c5;stroke-width:1.5;fill:none}.edge-label{fill:#7a8799;font-size:10px}.legend{display:flex;flex-wrap:wrap;gap:14px;padding:12px 16px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.legend span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:3px;background:#dbe3ff;margin-right:6px}.legend span:nth-child(2):before{background:#d8eee5}.legend span:nth-child(3):before{background:#f6e8cc}.footer{color:#8a94a3;font-size:11px;margin-top:28px;text-align:center}.hidden{display:none!important}
-@media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{position:static}.cards{grid-template-columns:1fr 1fr}.hero{align-items:flex-start;flex-direction:column}.status{white-space:normal}}@media(max-width:560px){.shell{padding:18px 14px 40px}.cards,.profilegrid{grid-template-columns:1fr}.topnote{display:none}.card{min-height:0}.dates{white-space:normal;text-align:right}.tabs{overflow-x:auto}.tab{padding:12px 11px;white-space:nowrap}.panel{padding:17px}.graphbox svg{min-height:260px}}
+:root{--bg:#f5f6f8;--panel:#fff;--ink:#17202b;--muted:#697586;--line:#e3e7ed;--accent:#3459d1;--accent-soft:#edf1ff;--green:#237a61;--shadow:0 8px 28px rgba(25,39,65,.055)}*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,sans-serif;background:linear-gradient(180deg,#f8f9fb,#eef2f7);color:var(--ink)}a{text-decoration:none;color:var(--accent)}.shell{max-width:1180px;margin:0 auto;padding:28px 18px 50px}.topbar,.hero,.layout,.detail-panel,.panel{background:rgba(255,255,255,.74);backdrop-filter:blur(8px)}.topbar{border:1px solid var(--line);box-shadow:var(--shadow);border-radius:18px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.brand{font-weight:800;letter-spacing:.14em;font-size:12px}.brand span{color:var(--accent)}.topnote{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}.hero{border:1px solid var(--line);border-radius:24px;padding:26px 28px;box-shadow:var(--shadow);display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:18px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:800}.hero h1{margin:10px 0;font-size:clamp(34px,5vw,62px);line-height:.98;letter-spacing:-.06em}.intro{max-width:780px;color:var(--muted);font-size:16px;line-height:1.55;margin:0}.tabs{display:flex;gap:8px;flex-wrap:wrap}.tab{background:#f0f3fa;border:1px solid var(--line);padding:10px 14px;border-radius:999px;font-weight:700;color:var(--ink);cursor:pointer}.tab.active{background:var(--accent);color:white;border-color:var(--accent)}.layout{display:grid;grid-template-columns:260px 1fr;gap:18px;padding:18px;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}.sidebar{border-right:1px solid var(--line);padding-right:14px}.sidehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.sidehead h2{margin:0;font-size:22px;letter-spacing:-.04em}.clear{background:transparent;border:1px solid var(--line);padding:8px 10px;border-radius:8px;cursor:pointer;color:var(--ink)}.field{margin:14px 0}.field label{display:block;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}.field input.search{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#f9fafc;font:inherit}.checklist{display:grid;gap:8px}.typefilter{accent-color:var(--accent)}.chipbox{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.chip{border:1px solid var(--line);background:#f8f9fd;padding:8px 10px;border-radius:999px;font-size:12px;cursor:pointer;color:var(--ink)}.chip.active{background:var(--accent-soft);border-color:rgba(52,89,209,.2);color:var(--accent);font-weight:700}.cards{display:grid;grid-template-columns:repeat(2,minmax(220px,1fr));gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;cursor:pointer;transition:.18s ease;box-shadow:0 8px 16px rgba(24,35,58,.02)}.card:hover{transform:translateY(-2px);box-shadow:0 16px 26px rgba(24,35,58,.06)}.cardtop{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}.kind{color:var(--accent);font-weight:800}.card h3{margin:14px 0 8px;font-size:23px;letter-spacing:-.04em}.company{font-size:13px;color:var(--muted)}.summary{margin:12px 0 14px;color:#2d3748;line-height:1.6;font-size:14px;min-height:72px}.tags{display:flex;flex-wrap:wrap;gap:6px}.tag{display:inline-flex;padding:6px 8px;border-radius:999px;background:#f3f5fb;border:1px solid var(--line);font-size:11px;color:#404d5f}.openhint{margin-top:16px;font-size:12px;font-weight:700;color:var(--accent)}.empty{padding:14px 0;color:var(--muted)}.hidden{display:none !important}.status{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0 10px}.status b{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}#resultCount{font-weight:700;color:var(--ink)}.panel{border:1px solid var(--line);box-shadow:var(--shadow);border-radius:24px;padding:20px}.profile-head{display:flex;align-items:center;gap:16px}.avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6b82ff);display:grid;place-items:center;color:#fff;font-weight:700;letter-spacing:-.04em;font-size:24px}.profile-head h2{margin:0;font-size:clamp(26px,4vw,42px);letter-spacing:-.06em}.profile-head p{margin:6px 0 0;color:var(--muted)}.profile-grid{display:grid;grid-template-columns:repeat(2,minmax(180px,1fr));gap:12px;margin-top:18px}.fact{padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fbfcff}.fact-label{display:block;font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:6px}.fact-value{font-size:15px}.detail-panel{border:1px solid var(--line);box-shadow:var(--shadow);border-radius:24px;padding:22px;background:rgba(255,255,255,.86)}.back{padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#f7f9fd;color:var(--ink);font-weight:700;cursor:pointer;margin-bottom:8px}.detail-meta{color:var(--muted);margin:8px 0 16px}.description-content{line-height:1.65;color:#293548}.description-content p{margin:0 0 14px}.detail-panel h3{margin:28px 0 10px;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.doclink{display:inline-block;background:var(--accent-soft);padding:10px 12px;border:1px solid rgba(52,89,209,.15);border-radius:10px;font-weight:700}.footer{padding-top:12px;font-size:12px;color:var(--muted);text-align:center}.graph-wrap{overflow:auto}.graph-wrap svg{width:100%;height:auto;display:block;border-radius:18px;background:linear-gradient(180deg,#f9fbff,#f4f7fd)}.legend{display:flex;flex-wrap:wrap;gap:10px;padding-top:12px;color:var(--muted);font-size:12px}.legend span{display:inline-flex;align-items:center;gap:6px}.legend span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;background:#dfe7ff}.legend span:nth-child(2):before{background:#e7f4ee}.legend span:nth-child(3):before{background:#f9f6d8}.legend span:nth-child(4):before{background:#dfe7ff}@media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{border-right:none;padding-right:0;border-bottom:1px solid var(--line);padding-bottom:18px}.cards{grid-template-columns:1fr 1fr}.hero{flex-direction:column;align-items:flex-start}.status{white-space:normal}.profile-grid{grid-template-columns:1fr}}@media(max-width:560px){.cards{grid-template-columns:1fr}.topbar{flex-direction:column;align-items:flex-start;gap:8px}.brand{letter-spacing:.08em}}.
 </style></head>
 <body><div class="shell">
 <header class="topbar"><div class="brand">S<span>.</span> SCHESKE <span style="font-weight:450;color:#8a94a3">/ ONTOLOGY CV</span></div><div class="topnote">A structured view of experience, skills & knowledge</div></header>
-<section class="hero"><div><div class="eyebrow">Technical Communication · Information Architecture</div><h1>Experience, connected.</h1><p class="intro">A structured portfolio exploring how professional experience, skills, technologies and information resources relate to one another.</p></div><div class="status">B.Eng. · Technical Communication</div></section>
-<nav class="tabs"><button class="tab active" data-tab="experience">Experience</button><button class="tab" data-tab="profile">Profile</button><button class="tab" data-tab="graph">RDF Graph</button></nav>
-<section id="experienceView"><div class="layout"><aside class="sidebar"><div class="sidehead"><h2>Explore experience</h2><button class="clear" id="clearFilters">Reset</button></div><input class="search" id="search" placeholder="Search roles, skills, tools…" aria-label="Search experience"><span class="fieldlabel">Experience type</span><label class="checkrow"><input type="checkbox" value="Work Path" class="typefilter"> Work Path</label><label class="checkrow"><input type="checkbox" value="Project" class="typefilter"> Project</label><label class="checkrow"><input type="checkbox" value="Educational Path" class="typefilter"> Education Path</label><span class="fieldlabel">Skills</span><div class="chips" id="skillFilters"></div><p class="filterhint">Only options that further narrow the current results are shown.</p><span class="fieldlabel">Technologies</span><div class="chips" id="techFilters"></div><p class="filterhint">Options update automatically as you filter.</p></aside><main><div class="contenthead"><h2>Selected experience</h2><span class="count" id="resultCount"></span></div><div class="cards" id="cards"></div><div class="empty hidden" id="empty">No entries match these filters. Try a different search.</div></main></div></section>
-<section id="profileView" class="hidden"><div class="panel"><div class="profile-head"><div class="avatar">SS</div><div><h2>Sascha Leander Scheske</h2><p>Technical Communication · Semantic information · Documentation systems</p></div></div><div class="profilegrid"><div class="infobox"><h3>Profile</h3><p>Technical Communication graduate interested in structured content, metadata and the connections between information resources.</p></div><div class="infobox"><h3>Contact</h3><p>career@s-l-scheske.com</p></div><div class="infobox"><h3>Languages</h3><div class="tags"><span class="tag">German · Native</span><span class="tag">English · Business proficiency</span><span class="tag">Japanese · Beginner</span></div></div><div class="infobox"><h3>Focus areas</h3><div class="tags"><span class="tag">Technical Writing</span><span class="tag">Knowledge Modeling</span><span class="tag">DITA</span><span class="tag">iiRDS</span><span class="tag">Documentation Workflow</span></div></div></div><p style="font-size:11px;color:#8993a1;margin:20px 0 0">Prototype note: personal data is shown as a design example. Remove any details you do not want to publish publicly.</p></div></section>
-<section id="graphView" class="hidden"><div class="panel"><div class="eyebrow">Knowledge model</div><h2 style="margin:7px 0;font-size:25px;letter-spacing:-.04em">The CV as a graph</h2><p class="graphintro">Illustrative view of the relationships represented in the ontology. Select a node to open the related experience.</p><div class="graphbox"><svg viewBox="0 0 900 500" role="img" aria-label="Illustrative RDF graph showing person, work experience, projects, skills and information resources"><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="#a8b3c5"/></marker></defs>
-<path class="edge" marker-end="url(#arrow)" d="M450 70 L220 150"/><path class="edge" marker-end="url(#arrow)" d="M450 70 L450 150"/><path class="edge" marker-end="url(#arrow)" d="M450 70 L680 150"/><path class="edge" marker-end="url(#arrow)" d="M220 195 L120 285"/><path class="edge" marker-end="url(#arrow)" d="M220 195 L290 285"/><path class="edge" marker-end="url(#arrow)" d="M450 195 L450 285"/><path class="edge" marker-end="url(#arrow)" d="M680 195 L610 285"/><path class="edge" marker-end="url(#arrow)" d="M680 195 L790 285"/><path class="edge" marker-end="url(#arrow)" d="M220 330 L220 395"/><path class="edge" marker-end="url(#arrow)" d="M680 330 L680 395"/>
-<text class="edge-label" x="310" y="100">hasWorkExperience</text><text class="edge-label" x="463" y="115">hasEducation</text><text class="edge-label" x="565" y="100">hasSkill</text><text class="edge-label" x="100" y="242">hasSummary</text><text class="edge-label" x="255" y="244">hasDescription</text><text class="edge-label" x="460" y="244">learnedSkill</text><text class="edge-label" x="640" y="244">learnedTechnology</text>
-<g class="node core" data-open="profile"><rect x="340" y="25" width="220" height="46"/><text x="450" y="53">Person · Sascha Scheske</text></g>
-<g class="node" data-open="Crown Equipment"><rect x="125" y="150" width="190" height="45"/><text x="220" y="177">Work Path · Crown</text></g><g class="node" data-open="Bachelor Thesis"><rect x="355" y="150" width="190" height="45"/><text x="450" y="177">Project · Bachelor Thesis</text></g><g class="node" data-open="Technical Writing"><rect x="585" y="150" width="190" height="45"/><text x="680" y="177">Skill · Technical Writing</text></g>
-<g class="node" data-open="Crown Equipment"><rect x="35" y="285" width="170" height="45"/><text x="120" y="312">Fragment · Summary</text></g><g class="node" data-open="Crown Equipment"><rect x="220" y="285" width="140" height="45"/><text x="290" y="312">Topic · Description</text></g><g class="node" data-open="Bachelor Thesis"><rect x="375" y="285" width="150" height="45"/><text x="450" y="312">Skill · Research</text></g><g class="node" data-open="Crown Equipment"><rect x="540" y="285" width="140" height="45"/><text x="610" y="312">Technology · CCMS</text></g><g class="node" data-open="Crown Equipment"><rect x="705" y="285" width="170" height="45"/><text x="790" y="312">Document · Reference</text></g>
-<g class="node" data-open="Crown Equipment"><rect x="130" y="395" width="180" height="45"/><text x="220" y="422">Information Resource</text></g><g class="node" data-open="Crown Equipment"><rect x="590" y="395" width="180" height="45"/><text x="680" y="422">Linked resources</text></g>
-</svg><div class="legend"><span>Person / core entity</span><span>Experience / resource</span><span>Skills / technologies</span><span>Arrows represent relationships</span></div></div><p style="font-size:11px;color:#8993a1;margin-bottom:0">This graph is a visual mock-up, not a live RDF renderer. The final version can be generated from the published RDF file.</p></div></section>
+<section class="hero"><div><div class="eyebrow">Technical Communication · Information Architecture</div><h1>Experience, connected.</h1><p class="intro">A structured portfolio exploring how professional activity, learning and skills relate across an ontology-based CV.</p></div><nav class="tabs"><button class="tab active" data-tab="experience">Experience</button><button class="tab" data-tab="profile">Profile</button><button class="tab" data-tab="graph">RDF Graph</button></nav></section>
+<section id="experienceView"><div class="layout"><aside class="sidebar"><div class="sidehead"><h2>Explore experience</h2><button class="clear" id="clearFilters">Reset</button></div><div class="field"><label for="search">Search</label><input id="search" class="search" type="search" placeholder="Name, company, skill…"></div><div class="field"><label>Type</label><div class="checklist"><label><input class="typefilter" type="checkbox" value="Work Path"> Work Path</label><label><input class="typefilter" type="checkbox" value="Project"> Project</label><label><input class="typefilter" type="checkbox" value="Educational Path"> Educational Path</label></div></div><div class="field"><label>Skills</label><div id="skillFilters" class="chipbox"></div></div><div class="field"><label>Technologies</label><div id="techFilters" class="chipbox"></div></div></aside><div><div class="status"><b>Results</b><span id="resultCount">0 Einträge</span></div><div id="cards" class="cards"></div><div id="empty" class="empty hidden">No entries match the selected filters.</div></div></div></section>
+<section id="profileView" class="hidden"><div class="panel"><div class="profile-head"><div class="avatar">SS</div><div><h2>Sascha Leander Scheske</h2><p>Technical Communication · Semantic information design</p></div></div><div class="profile-grid"><div class="fact"><span class="fact-label">Email</span><span class="fact-value">career@s-l-scheske.com</span></div><div class="fact"><span class="fact-label">DOB</span><span class="fact-value">1999-06-26</span></div><div class="fact"><span class="fact-label">Languages</span><span class="fact-value">German · English · Japanese</span></div></div></div></section>
+<section id="graphView" class="hidden"><div class="panel"><div class="eyebrow">Knowledge model</div><h2 style="margin:7px 0;font-size:25px;letter-spacing:-.04em">The CV as a graph</h2><p class="intro" style="margin-bottom:16px">The data model is built from typed experience, skills, technologies, education and person relationships.</p><div class="graph-wrap"><svg viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ontology graph visualisation"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6 z" fill="#7388a8"/></marker></defs><path class="edge" marker-end="url(#arrow)" d="M450 70 L220 150" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M450 70 L450 150" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M450 70 L680 150" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M220 195 L80 285" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M220 195 L220 285" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M220 195 L360 285" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M220 195 L540 285" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M680 195 L640 285" stroke="#7388a8" stroke-width="2" fill="none"/><path class="edge" marker-end="url(#arrow)" d="M680 195 L770 285" stroke="#7388a8" stroke-width="2" fill="none"/><text class="edge-label" x="310" y="100" fill="#5f6e84" font-size="12">hasWorkExperience</text><text class="edge-label" x="464" y="115" fill="#5f6e84" font-size="12">hasEducation</text><text class="edge-label" x="565" y="100" fill="#5f6e84" font-size="12">hasSkill</text><text class="edge-label" x="55" y="250" fill="#5f6e84" font-size="12">hasSummary</text><text class="edge-label" x="245" y="250" fill="#5f6e84" font-size="12">hasDescription</text><text class="edge-label" x="360" y="250" fill="#5f6e84" font-size="12">usesTechnology</text><text class="edge-label" x="540" y="250" fill="#5f6e84" font-size="12">learnedSkill</text><text class="edge-label" x="620" y="250" fill="#5f6e84" font-size="12">partOf</text><text class="edge-label" x="775" y="250" fill="#5f6e84" font-size="12">hasDocument</text><g class="node core" data-open="profile"><rect x="340" y="25" width="220" height="46" rx="10" fill="#eef3ff" stroke="#cfe0ff"/><text x="450" y="53" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="700">Person · Sascha Scheske</text></g><g class="node" data-open="Crown Equipment"><rect x="125" y="150" width="190" height="45" rx="10" fill="#f1f6ff" stroke="#dfeaff"/><text x="220" y="177" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Work Path · Crown</text></g><g class="node" data-open="Bachelor Thesis"><rect x="355" y="150" width="190" height="45" rx="10" fill="#f1f6ff" stroke="#dfeaff"/><text x="450" y="177" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Education · UAS</text></g><g class="node" data-open="Knowledge Graph"><rect x="585" y="150" width="190" height="45" rx="10" fill="#f7f4d5" stroke="#efe5a8"/><text x="680" y="177" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Skill / Project</text></g><g class="node" data-open="Crown Equipment"><rect x="35" y="285" width="170" height="45" rx="10" fill="#eef6f2" stroke="#d5ebdf"/><text x="120" y="312" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Fragment · Summary</text></g><g class="node" data-open="Crown Equipment"><rect x="150" y="285" width="180" height="45" rx="10" fill="#eef6f2" stroke="#d5ebdf"/><text x="240" y="312" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Description</text></g><g class="node" data-open="Crown Equipment"><rect x="352" y="285" width="170" height="45" rx="10" fill="#eef6f2" stroke="#d5ebdf"/><text x="437" y="312" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Technology</text></g><g class="node" data-open="Crown Equipment"><rect x="530" y="285" width="170" height="45" rx="10" fill="#eef6f2" stroke="#d5ebdf"/><text x="615" y="312" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Skill</text></g><g class="node" data-open="Crown Equipment"><rect x="700" y="285" width="170" height="45" rx="10" fill="#eef6f2" stroke="#d5ebdf"/><text x="785" y="312" text-anchor="middle" fill="#1d2d4d" font-size="15" font-weight="600">Document</text></g></svg><div class="legend"><span>Person / core entity</span><span>Experience / resource</span><span>Skills / technologies</span><span>Arrows represent relationships</span></div></div></div></section>
 <section id="detailView" class="hidden"></section>
-<div class="footer">Prototype · Content and relationships will be connected to the published RDF and resource files in a later step.</div></div>
+<div class="footer">Prototype · Content and relationships are derived from the RDF ontology and linked resource naming conventions.</div></div>
 <script>
-  // Namespace-Definitionen basierend auf deiner RDF-Ontologie
   const CV = $rdf.Namespace("https://scheske.leander/ontology/cv#");
   const RDF = $rdf.Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#");
   const RDFS = $rdf.Namespace("http://www.w3.org/2000/01/rdf-schema#");
 
   let entries = [];
   let selectedSkills = new Set(), selectedTech = new Set();
-  let currentEntry = null;
 
-  // Hilfsfunktionen zum Auslesen aus dem RDF-Store
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  }
+
+  function getIriId(ind) {
+    if (!ind) return '';
+    if (ind.value) return ind.value.split('#').pop();
+    return String(ind).split('#').pop();
+  }
+
   function getLabel(store, ind) {
-    const label = store.any(ind, RDFS('label'));
-    return label ? label.value : ind.value.split('#').pop();
+    if (!ind) return '';
+    const lbl = store.any(ind, RDFS('label'));
+    if (lbl) return lbl.value;
+    const val = ind.value || String(ind);
+    return val.split('#').pop() || val;
   }
 
   function getDataProp(store, ind, prop) {
+    if (!ind || !prop) return '';
     const val = store.any(ind, prop);
-    return val ? val.value : '';
+    if (!val) return '';
+    if (val.termType === 'Literal') return val.value;
+    return getLabel(store, val);
   }
 
   function getListProps(store, ind, prop) {
-    const nodes = store.each(ind, prop);
-    return nodes.map(n => getLabel(store, n));
+    if (!ind || !prop) return [];
+    return store.each(ind, prop).map(n => getLabel(store, n));
   }
 
-  // Hauptfunktion: Lädt und parst die RDF-Datei
-  // Hilfsfunktion: Holt die ID direkt aus dem lokalen Teil der IRI (nach dem #)
-  function getIriId(ind) {
-    return ind.value.split('#').pop();
+  function getPredicateLabel(store, predicate) {
+    const label = getLabel(store, predicate);
+    return label.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, c => c.toUpperCase());
   }
 
-  // Hilfsfunktion: Holt das rdfs:label für die schöne Anzeige
-  function getLabel(store, ind) {
-    const label = store.any(ind, RDFS('label'));
-    return label ? label.value : getIriId(ind);
+  function buildDynamicFacts(store, subject) {
+    const triplets = store.match(subject, undefined, undefined);
+    return triplets
+      .filter(t => t.predicate.value !== RDF('type').value && t.predicate.value !== RDFS('label').value)
+      .map(t => ({
+        label: getPredicateLabel(store, t.predicate),
+        value: t.object.termType === 'Literal' ? t.object.value : getLabel(store, t.object)
+      }))
+      .filter(item => item.label && item.value);
   }
 
-  async function loadOntologyAndBuildCV() {
-    const store = $rdf.graph();
-    const relativeUrl = 'ontology/CV-Ontology.rdf';
-    const absoluteUrl = new URL(relativeUrl, window.location.href).href;
+  function isSubclassOf(store, classNode, targetClassNode) {
+    if (!classNode || !targetClassNode) return false;
+    if (classNode.value === targetClassNode.value) return true;
 
-    try {
-      const response = await fetch(relativeUrl);
-      if (!response.ok) throw new Error("RDF-Datei konnte nicht geladen werden.");
-      const rdfText = await response.text();
-      
-      $rdf.parse(rdfText, store, absoluteUrl, 'application/rdf+xml');
-
-      entries = []; // Array leeren
-
-      // 1. Work Paths (Berufserfahrungen) auslesen
-      store.each(undefined, RDF('type'), CV('WorkPath')).forEach(ind => {
-        const iriId = getIriId(ind);               // Technische IRI (z.B. CrownEquipment)
-        const displayTitle = getLabel(store, ind); // Menschlesbares Label
-
-        entries.push({
-          id: displayTitle,
-          kind: 'Work Path',
-          dates: `${getDataProp(store, ind, CV('startDate'))} — ${getDataProp(store, ind, CV('endDate'))}`,
-          company: getDataProp(store, ind, CV('companyName')),
-          role: getDataProp(store, ind, CV('employmentType')) || 'Working Student / Intern',
-          // Hier nutzen wir jetzt die saubere IRI-ID für die Dateien im Ordner:
-          summaryFile: `content/summaries/${iriId}Summary.txt`,
-          descriptionFile: `content/descriptions/${iriId}Description.html`,
-          skills: getListProps(store, ind, CV('learnedSkill')),
-          tech: getListProps(store, ind, CV('learnedTechnology')),
-          doc: `dokumente/${iriId}Reference.pdf`
-        });
-      });
-
-      // 2. Projects (Projekte) auslesen
-      store.each(undefined, RDF('type'), CV('Project')).forEach(ind => {
-        const iriId = getIriId(ind);
-        const displayTitle = getLabel(store, ind);
-
-        entries.push({
-          id: displayTitle,
-          kind: 'Project',
-          dates: `${getDataProp(store, ind, CV('startDate'))} — ${getDataProp(store, ind, CV('endDate'))}`,
-          company: 'University of Applied Sciences Munich / Personal',
-          role: displayTitle,
-          summaryFile: `content/summaries/${iriId}Summary.txt`,
-          descriptionFile: `content/descriptions/${iriId}Description.html`,
-          skills: getListProps(store, ind, CV('learnedSkill')),
-          tech: getListProps(store, ind, CV('learnedTechnology')),
-          doc: ''
-        });
-      });
-
-      // 3. Educational Paths (Ausbildung) auslesen
-      store.each(undefined, RDF('type'), CV('EducationalPath')).forEach(ind => {
-        const iriId = getIriId(ind);
-        const displayTitle = getLabel(store, ind);
-
-        entries.push({
-          id: displayTitle,
-          kind: 'Educational Path',
-          dates: `${getDataProp(store, ind, CV('startDate'))} — ${getDataProp(store, ind, CV('endDate'))}`,
-          company: getDataProp(store, ind, CV('fieldOfStudy')),
-          role: getDataProp(store, ind, CV('degreeName')),
-          summaryFile: `content/summaries/${iriId}Summary.txt`,
-          descriptionFile: `content/descriptions/${iriId}Description.html`,
-          skills: getListProps(store, ind, CV('learnedSkill')),
-          tech: getListProps(store, ind, CV('learnedTechnology')),
-          doc: `dokumente/${iriId}Reference.pdf`
-        });
-      });
-
-      renderCards();
-
-    } catch (error) {
-      console.error("Fehler beim Parsen der Ontologie:", error);
-      document.getElementById('cards').innerHTML = `<p class="empty">Fehler beim Laden der RDF-Datei: ${error.message}</p>`;
+    const parents = store.each(classNode, RDFS('subClassOf'));
+    for (const parent of parents) {
+      if (parent.value === targetClassNode.value) return true;
+      if (isSubclassOf(store, parent, targetClassNode)) return true;
     }
+    return false;
   }
 
-  // --- UI-Render-Funktionen ---
-  
+  function getTypeForInstance(store, ind) {
+    const types = store.each(ind, RDF('type'));
+    if (!types.length) return null;
+
+    const experienceType = CV('Experience');
+    const selected = types.find(t => t.value !== experienceType.value && !isSubclassOf(store, t, experienceType));
+    if (selected) return selected;
+
+    return types.find(t => t.value !== experienceType.value) || types[0] || null;
+  }
+
+  function isExperienceInstance(store, ind) {
+    const types = store.each(ind, RDF('type'));
+    if (!types.length) return false;
+    const experienceType = CV('Experience');
+    return types.some(t => t.value === experienceType.value || isSubclassOf(store, t, experienceType));
+  }
+
+  function buildGuessFile(ind, kind) {
+    const iriId = getIriId(ind);
+    if (!iriId) return '';
+
+    const map = {
+      summary: `content/summaries/${iriId}Summary.txt`,
+      description: `content/descriptions/${iriId}Description.html`,
+      document: `dokumente/${iriId}Reference.pdf`
+    };
+    return map[kind] || '';
+  }
+
+  function getExperienceKind(store, ind) {
+    const type = getTypeForInstance(store, ind);
+    if (!type) return 'Experience';
+    return getLabel(store, type);
+  }
+
+  function getCompanyName(store, ind) {
+    return getDataProp(store, ind, CV('companyName'))
+      || getDataProp(store, ind, CV('fieldOfStudy'))
+      || getDataProp(store, ind, CV('degreeName'))
+      || (() => {
+        const partOf = store.any(ind, CV('partOf'));
+        return partOf ? getLabel(store, partOf) : '';
+      })();
+  }
+
+  function getEntryRole(store, ind, kind) {
+    if (kind === 'Work Path') return getDataProp(store, ind, CV('employmentType')) || 'Professional experience';
+    if (kind === 'Educational Path') return getDataProp(store, ind, CV('degreeName')) || 'Education';
+    if (kind === 'Project') return getDataProp(store, ind, CV('degreeName')) || getLabel(store, ind);
+    return getLabel(store, ind);
+  }
+
+  function makeEntryFromExperience(store, ind) {
+    const title = getLabel(store, ind);
+    const kind = getExperienceKind(store, ind);
+    const dates = `${getDataProp(store, ind, CV('startDate'))} — ${getDataProp(store, ind, CV('endDate'))}`.replace(/\s—\s$/, '').replace(/\s+—\s+/, ' — ');
+
+    return {
+      id: title,
+      iri: ind.value,
+      kind,
+      dates: dates || 'Date not specified',
+      company: getCompanyName(store, ind),
+      role: getEntryRole(store, ind, kind),
+      summaryFile: buildGuessFile(ind, 'summary'),
+      descriptionFile: buildGuessFile(ind, 'description'),
+      doc: buildGuessFile(ind, 'document'),
+      skills: getListProps(store, ind, CV('learnedSkill')).concat(getListProps(store, ind, CV('hasSkill'))),
+      tech: getListProps(store, ind, CV('learnedTechnology')),
+      facts: buildDynamicFacts(store, ind)
+    };
+  }
+
+  function renderProfile(store, person) {
+    const frame = document.getElementById('profileView');
+    if (!frame) return;
+
+    const fullName = getDataProp(store, person, CV('fullName')) || getLabel(store, person);
+    const email = getDataProp(store, person, CV('emailAddress'));
+    const dob = getDataProp(store, person, CV('dateOfBirth'));
+    const languages = store.each(person, CV('hasLanguage')).map(lang => {
+      const label = getLabel(store, lang);
+      const level = getDataProp(store, lang, CV('languageLevel'));
+      return level ? `${label} (${level})` : label;
+    });
+
+    const facts = buildDynamicFacts(store, person)
+      .filter(item => !['hasLanguage', 'hasEducation', 'hasWorkExperience', 'hasSkill'].includes(item.label.replace(/\s+/g, '')))
+      .slice(0, 6);
+
+    const factsHtml = facts.length
+      ? facts.map(item => `
+        <div class="fact">
+          <span class="fact-label">${escapeHtml(item.label)}</span>
+          <span class="fact-value">${escapeHtml(item.value)}</span>
+        </div>
+      `).join('')
+      : '';
+
+    const initials = fullName
+      .split(/\s+/)
+      .slice(0, 2)
+      .map(part => part[0] || '')
+      .join('')
+      .toUpperCase() || 'CV';
+
+    frame.classList.remove('hidden');
+    frame.innerHTML = `
+      <div class="panel">
+        <div class="profile-head">
+          <div class="avatar">${escapeHtml(initials)}</div>
+          <div>
+            <h2>${escapeHtml(fullName)}</h2>
+            <p>${escapeHtml(getDataProp(store, person, CV('jobTitle')) || 'Technical Communication · Semantic information design')}</p>
+          </div>
+        </div>
+        <div class="profile-grid">
+          ${email ? `<div class="fact"><span class="fact-label">Email</span><span class="fact-value">${escapeHtml(email)}</span></div>` : ''}
+          ${dob ? `<div class="fact"><span class="fact-label">DOB</span><span class="fact-value">${escapeHtml(dob)}</span></div>` : ''}
+          ${languages.length ? `<div class="fact"><span class="fact-label">Languages</span><span class="fact-value">${escapeHtml(languages.join(' · '))}</span></div>` : ''}
+          ${factsHtml}
+        </div>
+      </div>
+    `;
+  }
+
   async function showDetail(e) {
     document.getElementById('experienceView').classList.add('hidden');
     document.getElementById('profileView').classList.add('hidden');
     document.getElementById('graphView').classList.add('hidden');
-    
+
     const d = document.getElementById('detailView');
     d.classList.remove('hidden');
 
-    // Ausführliche Beschreibung aus dem Ordner content/descriptions/ nachladen
-    let fullDescription = "Ausführliche Beschreibung wird geladen...";
+    let fullDescription = 'No detailed description found in the RDF metadata.';
     if (e.descriptionFile) {
       try {
         const res = await fetch(e.descriptionFile);
         if (res.ok) fullDescription = await res.text();
-        else fullDescription = "Keine Beschreibung hinterlegt.";
       } catch (err) {
-        fullDescription = "Fehler beim Laden der Beschreibung.";
+        fullDescription = 'The description file could not be loaded.';
       }
     }
 
+    const extraFacts = (e.facts || [])
+      .filter(f => !['startDate', 'endDate', 'companyName', 'employmentType', 'fieldOfStudy', 'degreeName', 'learnedSkill', 'learnedTechnology'].includes(f.label.replace(/\s+/g, '')))
+      .slice(0, 10);
+
     d.innerHTML = `
       <div class="detail-panel">
-        <button class="back" id="back">← Zurück zur Übersicht</button>
-        <div class="eyebrow">${e.kind}</div>
-        <h2>${e.id}</h2>
-        <div class="detail-meta">${e.company} · ${e.role} · ${e.dates}</div>
-        
-        <h3>Beschreibung</h3>
+        <button class="back" id="back">← Back to overview</button>
+        <div class="eyebrow">${escapeHtml(e.kind)}</div>
+        <h2>${escapeHtml(e.id)}</h2>
+        <div class="detail-meta">${escapeHtml(e.company || '—')} · ${escapeHtml(e.role || '—')} · ${escapeHtml(e.dates || '—')}</div>
+
+        <h3>Description</h3>
         <div class="description-content">${fullDescription}</div>
 
         <h3>Skills</h3>
-        <div class="tags">${e.skills.map(x => `<span class="tag">${x}</span>`).join('') || '—'}</div>
+        <div class="tags">${(e.skills || []).map(x => `<span class="tag">${escapeHtml(x)}</span>`).join('') || '—'}</div>
 
-        <h3>Technologien</h3>
-        <div class="tags">${e.tech.map(x => `<span class="tag">${x}</span>`).join('') || '—'}</div>
+        <h3>Technologies</h3>
+        <div class="tags">${(e.tech || []).map(x => `<span class="tag">${escapeHtml(x)}</span>`).join('') || '—'}</div>
 
-        <h3>Dokumente</h3>
-        ${e.doc ? `<a href="${e.doc}" target="_blank" class="doclink">🔒 Dokument öffnen (Passwortschutz möglich)</a>` : '<p style="font-size:12px;color:var(--muted)">Kein Dokument verknüpft.</p>'}
+        ${extraFacts.length ? `
+          <h3>Additional facts</h3>
+          <div class="tags">${extraFacts.map(f => `<span class="tag">${escapeHtml(f.label)}: ${escapeHtml(f.value)}</span>`).join('')}</div>
+        ` : ''}
+
+        <h3>Documents</h3>
+        ${e.doc ? `<a href="${e.doc}" target="_blank" class="doclink">🔒 Open document</a>` : '<p style="font-size:12px;color:var(--muted)">No document linked.</p>'}
       </div>
     `;
 
@@ -195,7 +267,7 @@
   function getBaseEntries() {
     const q = document.getElementById('search').value.toLowerCase().trim();
     const checkedTypes = [...document.querySelectorAll('.typefilter:checked')].map(x => x.value);
-    return entries.filter(e => 
+    return entries.filter(e =>
       (checkedTypes.length === 0 || checkedTypes.includes(e.kind)) &&
       (!q || [e.id, e.kind, e.company, e.role, ...e.skills, ...e.tech].join(' ').toLowerCase().includes(q)) &&
       [...selectedSkills].every(s => e.skills.includes(s)) &&
@@ -203,17 +275,22 @@
     );
   }
 
-  function makeChips(id, items, selectedSet, baseList, field) {
-    const box = document.getElementById(id); box.innerHTML = '';
-    const allItems = [...new Set(entries.flatMap(e => e[field]))].sort((a,b) => a.localeCompare(b));
+  function makeChips(id, selectedSet, baseList, field) {
+    const box = document.getElementById(id);
+    if (!box) return;
+    box.innerHTML = '';
+
+    const allItems = [...new Set(entries.flatMap(e => e[field] || []))].sort((a, b) => a.localeCompare(b));
     const available = allItems.filter(item => {
       if (selectedSet.has(item)) return true;
-      const count = baseList.filter(e => e[field].includes(item)).length;
+      const count = baseList.filter(e => (e[field] || []).includes(item)).length;
       return count > 0 && count < baseList.length;
     });
+
     available.forEach(item => {
-      const count = baseList.filter(e => e[field].includes(item)).length;
-      const b = document.createElement('button'); b.type = 'button';
+      const count = baseList.filter(e => (e[field] || []).includes(item)).length;
+      const b = document.createElement('button');
+      b.type = 'button';
       b.className = 'chip' + (selectedSet.has(item) ? ' active' : '');
       b.textContent = item + (selectedSet.has(item) ? '' : ` · ${count}`);
       b.onclick = () => {
@@ -226,23 +303,25 @@
 
   async function renderCards() {
     const list = getBaseEntries();
-    makeChips('skillFilters', [], selectedSkills, list, 'skills');
-    makeChips('techFilters', [], selectedTech, list, 'tech');
-    
-    const box = document.getElementById('cards'); box.innerHTML = '';
-    document.getElementById('resultCount').textContent = `${list.length} ${list.length === 1 ? 'Eintrag' : 'Einträge'}`;
+    makeChips('skillFilters', selectedSkills, list, 'skills');
+    makeChips('techFilters', selectedTech, list, 'tech');
+
+    const box = document.getElementById('cards');
+    if (!box) return;
+    box.innerHTML = '';
+
+    document.getElementById('resultCount').textContent = `${list.length} ${list.length === 1 ? 'entry' : 'entries'}`;
     document.getElementById('empty').classList.toggle('hidden', list.length > 0);
 
     for (const e of list) {
-      // Teaser-Text aus content/summaries/ dynamisch laden
-      let summaryText = "Zusammenfassung wird geladen...";
+      let summaryText = 'Summary loading…';
       if (e.summaryFile) {
         try {
           const res = await fetch(e.summaryFile);
           if (res.ok) summaryText = await res.text();
-          else summaryText = "Kein Teaser verfügbar.";
+          else summaryText = 'No summary available.';
         } catch (err) {
-          summaryText = "Fehler beim Laden des Teasers.";
+          summaryText = 'Error while loading summary.';
         }
       }
 
@@ -250,19 +329,49 @@
       c.className = 'card';
       c.tabIndex = 0;
       c.innerHTML = `
-        <div class="cardtop"><span class="kind">${e.kind}</span><span class="dates">${e.dates}</span></div>
-        <h3>${e.id}</h3>
-        <div class="company">${e.company} · ${e.role}</div>
-        <p class="summary">${summaryText}</p>
-        <div class="tags">${[...e.skills.slice(0,3), ...e.tech.slice(0,2)].map(t => `<span class="tag">${t}</span>`).join('')}</div>
-        <div class="openhint">Details ansehen ↗</div>
+        <div class="cardtop"><span class="kind">${escapeHtml(e.kind)}</span><span class="dates">${escapeHtml(e.dates)}</span></div>
+        <h3>${escapeHtml(e.id)}</h3>
+        <div class="company">${escapeHtml(e.company || '—')} · ${escapeHtml(e.role || '—')}</div>
+        <p class="summary">${escapeHtml(summaryText)}</p>
+        <div class="tags">${[...e.skills.slice(0, 3), ...e.tech.slice(0, 2)].map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
+        <div class="openhint">View details ↗</div>
       `;
       c.onclick = () => showDetail(e);
       box.appendChild(c);
     }
   }
 
-  // Event Listener initialisieren
+  async function loadOntologyAndBuildCV() {
+    const store = $rdf.graph();
+    const relativeUrl = 'ontology/CV-Ontology.rdf';
+    const absoluteUrl = new URL(relativeUrl, window.location.href).href;
+
+    try {
+      const response = await fetch(relativeUrl);
+      if (!response.ok) throw new Error('RDF file could not be loaded.');
+      const rdfText = await response.text();
+      $rdf.parse(rdfText, store, absoluteUrl, 'application/rdf+xml');
+
+      const person = store.each(undefined, RDF('type'), CV('Person'))[0];
+      if (person) renderProfile(store, person);
+
+      entries = [];
+      const experienceNodes = store.each(undefined, RDF('type'), undefined)
+        .map(q => q.subject)
+        .filter((item, index, arr) => arr.findIndex(x => x.value === item.value) === index)
+        .filter(ind => isExperienceInstance(store, ind));
+
+      experienceNodes.forEach(ind => entries.push(makeEntryFromExperience(store, ind)));
+      entries.sort((a, b) => a.id.localeCompare(b.id));
+
+      renderCards();
+    } catch (error) {
+      console.error('Error while parsing the ontology:', error);
+      const box = document.getElementById('cards');
+      if (box) box.innerHTML = `<p class="empty">Error loading RDF file: ${escapeHtml(error.message)}</p>`;
+    }
+  }
+
   document.getElementById('search').addEventListener('input', renderCards);
   document.querySelectorAll('.typefilter').forEach(x => x.addEventListener('change', renderCards));
   document.getElementById('clearFilters').onclick = () => {
@@ -271,12 +380,14 @@
     selectedSkills.clear(); selectedTech.clear();
     renderCards();
   };
+
   document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
     document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === t));
     ['experienceView', 'profileView', 'graphView', 'detailView'].forEach(id => document.getElementById(id).classList.add('hidden'));
-    document.getElementById(({experience: 'experienceView', profile: 'profileView', graph: 'graphView'})[t.dataset.tab]).classList.remove('hidden');
+    const map = { experience: 'experienceView', profile: 'profileView', graph: 'graphView' };
+    const target = map[t.dataset.tab];
+    if (target) document.getElementById(target).classList.remove('hidden');
   });
 
-  // Startschuss: Ontologie beim Laden der Seite einlesen
   loadOntologyAndBuildCV();
 </script></body></html>
