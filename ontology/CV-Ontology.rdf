@@ -891,9 +891,9 @@
     
 
 
-    <!-- https://scheske.leander/ontology/cv#UniversitiesOfAppliedSciences -->
+    <!-- https://scheske.leander/ontology/cv#UniversityOfAppliedSciences -->
 
-    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#UniversitiesOfAppliedSciences">
+    <owl:NamedIndividual rdf:about="https://scheske.leander/ontology/cv#UniversityOfAppliedSciences">
         <rdf:type rdf:resource="https://scheske.leander/ontology/cv#EducationalPath"/>
         <hasDescription rdf:resource="https://scheske.leander/ontology/cv#UniversityOfAppliedSciencesMunichDescription"/>
         <hasSummary rdf:resource="https://scheske.leander/ontology/cv#UniversityOfAppliedSciencesMunichSummary"/>
