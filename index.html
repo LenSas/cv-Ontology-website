@@ -52,11 +52,20 @@
   }
 
   // Hauptfunktion: Lädt und parst die RDF-Datei
+  // Hilfsfunktion: Holt die ID direkt aus dem lokalen Teil der IRI (nach dem #)
+  function getIriId(ind) {
+    return ind.value.split('#').pop();
+  }
+
+  // Hilfsfunktion: Holt das rdfs:label für die schöne Anzeige
+  function getLabel(store, ind) {
+    const label = store.any(ind, RDFS('label'));
+    return label ? label.value : getIriId(ind);
+  }
+
   async function loadOntologyAndBuildCV() {
     const store = $rdf.graph();
-    
     const relativeUrl = 'ontology/CV-Ontology.rdf';
-
     const absoluteUrl = new URL(relativeUrl, window.location.href).href;
 
     try {
@@ -67,65 +76,65 @@
       $rdf.parse(rdfText, store, absoluteUrl, 'application/rdf+xml');
 
       entries = []; // Array leeren
-      
-      // ... (hier geht dein restlicher Code wie gewohnt weiter)
-
-      entries = []; // Array leeren
 
       // 1. Work Paths (Berufserfahrungen) auslesen
       store.each(undefined, RDF('type'), CV('WorkPath')).forEach(ind => {
-        const id = getLabel(store, ind);
+        const iriId = getIriId(ind);               // Technische IRI (z.B. CrownEquipment)
+        const displayTitle = getLabel(store, ind); // Menschlesbares Label
+
         entries.push({
-          id: id,
+          id: displayTitle,
           kind: 'Work Path',
           dates: `${getDataProp(store, ind, CV('startDate'))} — ${getDataProp(store, ind, CV('endDate'))}`,
           company: getDataProp(store, ind, CV('companyName')),
           role: getDataProp(store, ind, CV('employmentType')) || 'Working Student / Intern',
-          summaryFile: `content/summaries/${id}Summary.txt`,
-          descriptionFile: `content/descriptions/${id}Description.html`,
+          // Hier nutzen wir jetzt die saubere IRI-ID für die Dateien im Ordner:
+          summaryFile: `content/summaries/${iriId}Summary.txt`,
+          descriptionFile: `content/descriptions/${iriId}Description.html`,
           skills: getListProps(store, ind, CV('learnedSkill')),
           tech: getListProps(store, ind, CV('learnedTechnology')),
-          doc: `dokumente/${id}Reference.pdf` // Zeugnis-Verknüpfung
+          doc: `dokumente/${iriId}Reference.pdf`
         });
       });
 
-      // 2. Projects (Projekte & Bachelorarbeit) auslesen
+      // 2. Projects (Projekte) auslesen
       store.each(undefined, RDF('type'), CV('Project')).forEach(ind => {
-        const id = getLabel(store, ind);
+        const iriId = getIriId(ind);
+        const displayTitle = getLabel(store, ind);
+
         entries.push({
-          id: id,
+          id: displayTitle,
           kind: 'Project',
           dates: `${getDataProp(store, ind, CV('startDate'))} — ${getDataProp(store, ind, CV('endDate'))}`,
           company: 'University of Applied Sciences Munich / Personal',
-          role: id,
-          summaryFile: `content/summaries/${id}Summary.txt`,
-          descriptionFile: `content/descriptions/${id}Description.html`,
+          role: displayTitle,
+          summaryFile: `content/summaries/${iriId}Summary.txt`,
+          descriptionFile: `content/descriptions/${iriId}Description.html`,
           skills: getListProps(store, ind, CV('learnedSkill')),
           tech: getListProps(store, ind, CV('learnedTechnology')),
           doc: ''
         });
       });
 
-      // 3. Educational Paths (Ausbildung / Studium) auslesen
+      // 3. Educational Paths (Ausbildung) auslesen
       store.each(undefined, RDF('type'), CV('EducationalPath')).forEach(ind => {
-        const id = getLabel(store, ind);
+        const iriId = getIriId(ind);
+        const displayTitle = getLabel(store, ind);
+
         entries.push({
-          id: id,
+          id: displayTitle,
           kind: 'Educational Path',
           dates: `${getDataProp(store, ind, CV('startDate'))} — ${getDataProp(store, ind, CV('endDate'))}`,
           company: getDataProp(store, ind, CV('fieldOfStudy')),
           role: getDataProp(store, ind, CV('degreeName')),
-          summaryFile: `content/summaries/${id}Summary.txt`,
-          descriptionFile: `content/descriptions/${id}Description.html`,
+          summaryFile: `content/summaries/${iriId}Summary.txt`,
+          descriptionFile: `content/descriptions/${iriId}Description.html`,
           skills: getListProps(store, ind, CV('learnedSkill')),
           tech: getListProps(store, ind, CV('learnedTechnology')),
-          doc: `dokumente/${id}Reference.pdf`
+          doc: `dokumente/${iriId}Reference.pdf`
         });
       });
 
-      console.log("Erfolgreich aus RDF geladene Einträge:", entries);
-
-      // UI initialisieren, sobald Daten da sind
       renderCards();
 
     } catch (error) {
