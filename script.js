@@ -25,6 +25,31 @@ let activeCategories = new Set();
 let activeSkills = new Set();
 let activeTechs = new Set();
 
+function resolveRepositoryAssetUrl(path) {
+  const normalizedPath = (path || '').replace(/^\/+/, '');
+  if (!normalizedPath) return '';
+
+  const githubRepoMatch = window.location.pathname.match(/^\/([^/]+)\/([^/]+)\/(?:tree|blob)\/([^/]+)(?:\/.*)?$/);
+  if (githubRepoMatch) {
+    const [, owner, repo, branch] = githubRepoMatch;
+    return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${normalizedPath}`;
+  }
+
+  return new URL(normalizedPath, window.location.href).href;
+}
+
+function resolveOntologyUrl() {
+  const relativeUrl = 'ontology/CV-Ontology.rdf';
+  const githubRepoMatch = window.location.pathname.match(/^\/([^/]+)\/([^/]+)\/(?:tree|blob)\/([^/]+)(?:\/.*)?$/);
+
+  if (githubRepoMatch) {
+    const [, owner, repo, branch] = githubRepoMatch;
+    return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/ontology/CV-Ontology.rdf`;
+  }
+
+  return new URL(relativeUrl, window.location.href).href;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initTabs();
   loadOntology();
@@ -63,10 +88,9 @@ async function loadOntology() {
 
   try {
     store = $rdf.graph();
-    const relativeUrl = 'ontology/CV-Ontology.rdf';
-    const absoluteUrl = new URL(relativeUrl, window.location.href).href;
+    const ontologyUrl = resolveOntologyUrl();
 
-    const response = await fetch(relativeUrl);
+    const response = await fetch(ontologyUrl, { cache: 'no-store' });
     if (!response.ok) {
       throw new Error(`Failed to load ontology file (HTTP ${response.status}). If testing locally, ensure you are running a local web server (e.g. python -m http.server).`);
     }
@@ -78,7 +102,7 @@ async function loadOntology() {
     RDFS = $rdf.Namespace('http://www.w3.org/2000/01/rdf-schema#');
     CV = $rdf.Namespace('https://scheske.leander/ontology/cv#');
 
-    $rdf.parse(rdfText, store, absoluteUrl, 'application/rdf+xml');
+    $rdf.parse(rdfText, store, ontologyUrl, 'application/rdf+xml');
 
     // Process Ontology Data
     parseExperiences();
@@ -93,7 +117,7 @@ async function loadOntology() {
       <div style="grid-column: 1/-1; background: #fef2f2; border: 1px solid #f87171; border-radius: 8px; padding: 2rem; color: #991b1b;">
         <h3 style="margin-bottom: 0.5rem; font-weight: 700;">Could not load CV Ontology</h3>
         <p style="margin-bottom: 1rem; font-size: 0.95rem;">${error.message}</p>
-        <p style="font-size: 0.85rem; color: #7f1d1d;">Note: Browsers block direct fetching of local files via <code>file://</code> due to CORS security policies. Please serve your repository via a local HTTP server.</p>
+        <p style="font-size: 0.85rem; color: #7f1d1d;">Note: Browsers block direct fetching of local files via <code>file://</code> due to CORS security policies. Please serve your repository via a local web server or deploy it with GitHub Pages.</p>
       </div>
     `;
   }
@@ -232,8 +256,7 @@ function parseProfile() {
   // Personal Summary text file loading
   const summaryNode = store.any(personInd, CV('hasSummary'));
   if (summaryNode) {
-    // Look for PersonSummary.txt or load fragment label
-    fetch('content/summaries/PersonSummary.txt')
+    fetch(resolveRepositoryAssetUrl('content/summaries/PersonSummary.txt'))
       .then(res => res.ok ? res.text() : Promise.resolve(getLabel(summaryNode)))
       .then(text => {
         document.getElementById('profile-summary-text').textContent = text;
@@ -248,27 +271,24 @@ function parseProfile() {
  * Render Sidebar Filters dynamically
  */
 function renderFilterSidebar() {
-  // Category Filters
   const catContainer = document.getElementById('category-filters');
   catContainer.innerHTML = Array.from(allCategoriesSet).sort().map(cat => `
-    <button class="filter-chip-btn" data-category="${cat}" onclick="toggleCategoryFilter('${cat}')">
+    <button class="filter-chip-btn" data-category="${cat}" onclick="toggleCategoryFilter('${cat.replace(/'/g, "\\'")}')">
       <span>${cat}</span>
       <span class="count-badge"></span>
     </button>
   `).join('');
 
-  // Skill Filters
   const skillContainer = document.getElementById('skill-filters');
   skillContainer.innerHTML = Array.from(allSkillsSet).sort().map(skill => `
-    <button class="tag-filter-btn" data-skill="${skill}" onclick="toggleSkillFilter('${skill}')">
+    <button class="tag-filter-btn" data-skill="${skill}" onclick="toggleSkillFilter('${skill.replace(/'/g, "\\'")}')">
       ${skill}
     </button>
   `).join('');
 
-  // Tech Filters
   const techContainer = document.getElementById('tech-filters');
   techContainer.innerHTML = Array.from(allTechSet).sort().map(tech => `
-    <button class="tag-filter-btn" data-tech="${tech}" onclick="toggleTechFilter('${tech}')">
+    <button class="tag-filter-btn" data-tech="${tech}" onclick="toggleTechFilter('${tech.replace(/'/g, "\\'")}')">
       ${tech}
     </button>
   `).join('');
@@ -420,7 +440,8 @@ async function renderCards(entriesToRender) {
   // Asynchronously fetch summary text files
   for (const entry of entriesToRender) {
     try {
-      const res = await fetch(entry.summaryFile);
+      const summaryUrl = resolveRepositoryAssetUrl(entry.summaryFile);
+      const res = await fetch(summaryUrl);
       const summaryEl = document.getElementById(`summary-${entry.iriId}`);
       if (res.ok) {
         const text = await res.text();
@@ -471,13 +492,12 @@ async function openDetailModal(entry) {
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
 
-  // NEU: Lädt jetzt eine .txt-Datei und formatiert Textabsätze automatisch
   try {
-    const res = await fetch(entry.descriptionFile);
+    const descriptionUrl = resolveRepositoryAssetUrl(entry.descriptionFile);
+    const res = await fetch(descriptionUrl);
     const descBody = document.getElementById('modal-desc-body');
     if (res.ok) {
       const textContent = await res.text();
-      // Wandelt Zeilenumbrüche aus der .txt in schöne <p>-Tags um
       descBody.innerHTML = textContent.split('\n\n').map(p => `<p>${p}</p>`).join('');
     } else {
       descBody.innerHTML = `<p>Beschreibung noch nicht verfügbar. Bitte erstelle die Textdatei <code>${entry.iriId}Description.txt</code> im Ordner <code>content/descriptions/</code>.</p>`;
