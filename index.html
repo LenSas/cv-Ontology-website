@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S. L. SCHESKE / ONTOLOGY CV</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/rdflib@2.2.32/dist/rdflib.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-brand">
+      S. L. SCHESKE <span class="brand-divider">/</span>
+      <span class="brand-title">ONTOLOGY CV</span>
+    </div>
+    <div class="header-tagline">A structured view of experience, skills, and relationships</div>
+  </header>
+
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-heading">Experience, Connected.</h1>
+      <p class="hero-subtitle">
+        An interactive exploration of my professional background, skills, and learning path, derived from my CV ontology and its connected relationships.
+      </p>
+    </div>
+    <nav class="main-nav" role="tablist">
+      <button class="nav-tab active" data-tab="experiences" role="tab" aria-selected="true">Experiences</button>
+      <button class="nav-tab" data-tab="profile" role="tab" aria-selected="false">Profile</button>
+      <button class="nav-tab" data-tab="graph" role="tab" aria-selected="false">Knowledge Graph</button>
+    </nav>
+  </section>
+
+  <div class="main-container">
+    <section id="tab-experiences" class="tab-pane active" role="tabpanel">
+      <div class="content-layout">
+        <aside class="filters-sidebar">
+          <div class="filters-header">
+            <h2>Filters</h2>
+            <button id="clear-filters-btn" class="clear-btn" type="button">Reset All</button>
+          </div>
+
+          <div class="filter-group">
+            <h3>Search</h3>
+            <input id="search-input" class="search-input" type="search" placeholder="Search skills, technologies, experience..." aria-label="Search experiences">
+          </div>
+
+          <div class="filter-group">
+            <h3>Experience Category</h3>
+            <div id="category-filters" class="filter-options">
+              <select id="category-select" class="category-select" aria-label="Filter by experience category">
+                <option value="">All Categories</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h3>Skills</h3>
+            <div id="skill-filters" class="filter-options checkbox-list" aria-label="Skill filters"></div>
+          </div>
+
+          <div class="filter-group">
+            <h3>Technologies</h3>
+            <div id="tech-filters" class="filter-options checkbox-list" aria-label="Technology filters"></div>
+          </div>
+        </aside>
+
+        <main class="experience-feed">
+          <div class="feed-status">
+            <span id="results-count">Loading experiences...</span>
+          </div>
+          <div id="cards-grid" class="cards-grid"></div>
+        </main>
+      </div>
+    </section>
+
+    <section id="tab-profile" class="tab-pane" role="tabpanel">
+      <div class="profile-container">
+        <div class="profile-card-main">
+          <img id="profile-img" src="images/profile-pic.jpg" alt="Sascha Leander Scheske">
+        <div class="profile-info">
+            <h2 id="profile-name">Sascha Leander Scheske</h2>
+            <p class="profile-meta-item"><strong>Date of Birth:</strong> <span id="profile-dob">1999-06-26</span></p>
+            <p class="profile-meta-item"><strong>Email:</strong> <a id="profile-email" href="mailto:career@s-l-scheske.com">career@s-l-scheske.com</a></p>
+            <div class="languages-section">
+              <h4>Languages</h4>
+              <ul id="profile-languages" class="languages-list"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="profile-summary-box">
+          <h3>Professional Summary</h3>
+          <p id="profile-summary-text">Loading personal summary from ontology...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-graph" class="tab-pane" role="tabpanel">
+      <div id="graph-container"></div>
+    </section>
+  </div>
+
+  <div id="detail-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true">
+      <button id="modal-close-btn" class="modal-close" aria-label="Close modal">&times;</button>
+      <div id="modal-content" class="modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>Powered by RDF/OWL Semantics &bull; Single Source of Truth Architecture</p>
+  </footer>
+</body>
+</html>
