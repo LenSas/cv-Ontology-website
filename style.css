@@ -727,6 +727,7 @@ body {
 #graph-container {
   width: 100%;
   height: calc(100vh - 220px);
+  min-height: 500px; /* Ergänzt für bessere Darstellung auf kleineren Bildschirmen */
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
