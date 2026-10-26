@@ -737,18 +737,18 @@ function initGraph() {
           'label': 'data(label)',
           'color': '#f1f5f9',
           'font-size': '11px',
-          'text-valign': 'bottom',          // NEU: Platzierung unterhalb des Balls
-          'text-margin-y': 6,               // NEU: Kleiner Abstand zum Ball
+          'text-valign': 'bottom',          // Platzierung unterhalb des Balls
+          'text-margin-y': 6,               // Kleiner Abstand zum Ball
           'background-color': '#131c2e',
           'border-width': 2,
           'border-color': '#1e293b',
           'width': '45px',
           'height': '45px',
-          'text-background-opacity': 0.7,   // NEU: Halbtransparenter Hintergrund für Lesbarkeit
-          'text-background-color': '#0b0f19', // NEU: Hintergrundfarbe passend zum Website-Design
-          'text-background-padding': '2px', // NEU: Innenabstand für das Text-Feld
+          'text-background-opacity': 0.7,   // Halbtransparenter Hintergrund für Lesbarkeit
+          'text-background-color': '#0b0f19', // Hintergrundfarbe passend zum Website-Design
+          'text-background-padding': '2px', // Innenabstand für das Text-Feld
           'text-background-shape': 'roundrectangle',
-          'z-index': 10                     // NEU: Stellt sicher, dass Texte ÜBER Kanten gerendert werden
+          'z-index': 10                     // Stellt sicher, dass Texte ÜBER Kanten gerendert werden
         }
       },
       {
@@ -760,7 +760,7 @@ function initGraph() {
           'width': '65px',
           'height': '65px',
           'border-color': '#0ea5e9',
-          'text-valign': 'center',          // Die Hauptperson kann die Schrift z.B. im Ball behalten
+          'text-valign': 'center',          // Die Hauptperson behält die Schrift z.B. im Ball
           'text-margin-y': 0
         }
       },
@@ -810,6 +810,67 @@ function initGraph() {
       padding: 30
     }
   });
+
+  // =========================================================================
+  // NEU: INTERAKTIVE FILTER & ANSICHTS-LOGIK FÜR DEN GRAPHEN
+  // =========================================================================
+
+  function applyGraphFilters() {
+    if (!cy) return;
+
+    const showExp = document.getElementById('filter-node-exp')?.checked ?? true;
+    const showSkill = document.getElementById('filter-node-skill')?.checked ?? true;
+    const showTech = document.getElementById('filter-node-tech')?.checked ?? true;
+
+    cy.batch(() => {
+      cy.nodes().forEach(node => {
+        const type = node.data('type');
+        if (type === 'person') {
+          node.show();
+        } else if (type === 'skill') {
+          showSkill ? node.show() : node.hide();
+        } else if (type === 'tech') {
+          showTech ? node.show() : node.hide();
+        } else {
+          showExp ? node.show() : node.hide();
+        }
+      });
+    });
+  }
+
+  // Event-Listener für die Checkboxen in der Toolbar
+  document.getElementById('filter-node-exp')?.addEventListener('change', applyGraphFilters);
+  document.getElementById('filter-node-skill')?.addEventListener('change', applyGraphFilters);
+  document.getElementById('filter-node-tech')?.addEventListener('change', applyGraphFilters);
+
+  // Layout umschalten über das Dropdown-Menü
+  const layoutSelect = document.getElementById('graph-layout-select');
+  if (layoutSelect) {
+    // Event-Listener sicherheitshalber vorher bereinigen, um doppelte Ausführung zu verhindern
+    layoutSelect.onchange = (e) => {
+      if (!cy) return;
+      const layoutName = e.target.value;
+      const layout = cy.layout({
+        name: layoutName,
+        animate: true,
+        animationDuration: 500,
+        padding: 30
+      });
+      layout.run();
+    };
+  }
+
+  // Graph zentrieren über den Button
+  const fitBtn = document.getElementById('graph-fit-btn');
+  if (fitBtn) {
+    fitBtn.onclick = () => {
+      if (!cy) return;
+      cy.animate({
+        fit: { padding: 30 },
+        duration: 400
+      });
+    };
+  }
 }
 
 /**
