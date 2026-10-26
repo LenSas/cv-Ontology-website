@@ -55,7 +55,7 @@ function initTabs() {
       const tabPane = document.getElementById(`tab-${targetTab}`);
       if (tabPane) tabPane.classList.add('active');
 
-      // NEU: Graph initialisieren und Größe anpassen, sobald der "Knowledge Graph"-Tab aktiv wird
+      // NEU: Graph initialisieren und Größe anpassen, sobald der "Knowl Graph"-Tab aktiv wird
       if (targetTab === 'graph') {
         setTimeout(() => {
           initGraph();
@@ -782,6 +782,11 @@ function initGraph() {
       {
         selector: 'edge',
         style: {
+          'label': 'data(label)',          // NEU: Zeigt den Label-Wert der Kante an
+          'color': '#94a3b8',              // Textfarbe für den Relationsnamen
+          'font-size': '9px',              // Kleine, dezente Schriftgröße
+          'text-rotation': 'autorotate',   // Dreht den Text passend zur Kantenrichtung
+          'text-margin-y': -8,             // Verschiebt den Text leicht über die Linie
           'width': 2,
           'line-color': '#1e293b',
           'curve-style': 'bezier',
