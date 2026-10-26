@@ -693,21 +693,63 @@ function initGraph() {
 
   const elements = [];
 
+  // 1. Person als Zentraler Knoten
   elements.push({
     data: { id: 'Person', label: personName, type: 'person' }
   });
 
+  // NEU: Direkte hasSkill oder hasLanguage Relationen aus der Ontologie auslesen (falls vorhanden)
+  if (personInd && store) {
+    // Skills direkt mit Person verknüpfen (hasSkill)
+    const directSkills = store.each(personInd, CV('hasSkill'));
+    directSkills.forEach(skillNode => {
+      const skillLabel = getLabel(skillNode);
+      const skillId = 'skill_' + skillLabel.replace(/\s+/g, '_');
+      
+      if (!elements.some(e => e.data.id === skillId)) {
+        elements.push({ data: { id: skillId, label: skillLabel, type: 'skill' } });
+      }
+      elements.push({ data: { source: 'Person', target: skillId, label: 'hasSkill' } });
+    });
+
+    // Sprachen direkt mit Person verknüpfen (hasLanguage)
+    const languages = store.each(personInd, CV('hasLanguage'));
+    languages.forEach(langNode => {
+      const langLabel = getLabel(langNode);
+      const langId = 'lang_' + langLabel.replace(/\s+/g, '_');
+      
+      if (!elements.some(e => e.data.id === langId)) {
+        elements.push({ data: { id: langId, label: langLabel, type: 'language' } });
+      }
+      elements.push({ data: { source: 'Person', target: langId, label: 'hasLanguage' } });
+    });
+  }
+
+  // 2. Kategorien als Zwischenknoten anlegen (WorkPath, Project, EducationalPath)
+  const categoriesMap = {
+    'Work Path': { id: 'cat_WorkPath', label: 'Work Experience', type: 'category' },
+    'Project': { id: 'cat_Project', label: 'Projects', type: 'category' },
+    'Educational Path': { id: 'cat_EducationalPath', label: 'Education', type: 'category' }
+  };
+
+  Object.values(categoriesMap).forEach(cat => {
+    elements.push({ data: cat });
+    elements.push({ data: { source: 'Person', target: cat.id, label: 'hasCategory' } });
+  });
+
+  // 3. Einträge (Experiences) verarbeiten
   allEntries.forEach(item => {
-    // 1. Hauptknoten (Experience / Projekt / Education)
     elements.push({
       data: { id: item.iriId, label: item.title, type: item.category }
     });
 
+    // Verbinde die Experience mit ihrer jeweiligen Kategorie statt direkt mit der Person
+    const parentCatId = categoriesMap[item.category]?.id || 'Person';
     elements.push({
-      data: { source: 'Person', target: item.iriId, label: item.category }
+      data: { source: parentCatId, target: item.iriId, label: 'includes' }
     });
 
-    // 2. Data Properties als eigene eckige Knoten anfügen
+    // Data Properties (Start/End/Firma)
     if (item.startDate) {
       const startId = `prop_start_${item.iriId}`;
       elements.push({ data: { id: startId, label: `startDate: ${item.startDate}`, type: 'dataproperty' } });
@@ -726,7 +768,7 @@ function initGraph() {
       elements.push({ data: { source: item.iriId, target: compId, label: 'companyName' } });
     }
 
-    // 3. Skills
+    // Skills (learnedSkill)
     (item.skills || []).forEach(skill => {
       const skillId = 'skill_' + skill.label.replace(/\s+/g, '_');
       if (!elements.some(e => e.data.id === skillId)) {
@@ -735,7 +777,7 @@ function initGraph() {
       elements.push({ data: { source: item.iriId, target: skillId, label: 'learnedSkill' } });
     });
 
-    // 4. Technologies
+    // Technologies (learnedTechnology)
     (item.technologies || []).forEach(tech => {
       const techId = 'tech_' + tech.label.replace(/\s+/g, '_');
       if (!elements.some(e => e.data.id === techId)) {
@@ -759,18 +801,18 @@ function initGraph() {
           'label': 'data(label)',
           'color': '#f1f5f9',
           'font-size': '11px',
-          'text-valign': 'bottom',          // Platzierung unterhalb des Knotens
-          'text-margin-y': 6,               // Kleiner Abstand
+          'text-valign': 'bottom',
+          'text-margin-y': 6,
           'background-color': '#131c2e',
           'border-width': 2,
           'border-color': '#1e293b',
           'width': '45px',
           'height': '45px',
-          'text-background-opacity': 0.7,   // Halbtransparenter Hintergrund für Lesbarkeit
-          'text-background-color': '#0b0f19', // Hintergrundfarbe passend zum Design
-          'text-background-padding': '2px', 
+          'text-background-opacity': 0.7,
+          'text-background-color': '#0b0f19',
+          'text-background-padding': '2px',
           'text-background-shape': 'roundrectangle',
-          'z-index': 10                     
+          'z-index': 10
         }
       },
       {
@@ -779,10 +821,24 @@ function initGraph() {
           'background-color': '#38bdf8',
           'color': '#ffffff',
           'font-weight': 'bold',
-          'width': '65px',
-          'height': '65px',
+          'width': '70px',
+          'height': '70px',
           'border-color': '#0ea5e9',
-          'text-valign': 'center',          
+          'text-valign': 'center',
+          'text-margin-y': 0
+        }
+      },
+      // Styling für Kategorie-Knoten (Subklassen von Experience)
+      {
+        selector: 'node[type = "category"]',
+        style: {
+          'background-color': '#6366f1',
+          'color': '#ffffff',
+          'font-weight': 'bold',
+          'width': '60px',
+          'height': '60px',
+          'border-color': '#4f46e5',
+          'text-valign': 'center',
           'text-margin-y': 0
         }
       },
@@ -808,7 +864,17 @@ function initGraph() {
           'font-size': '10px'
         }
       },
-      // NEU: Stil für Data-Properties (typisch: eckig / rechteckig)
+      {
+        selector: 'node[type = "language"]',
+        style: {
+          'background-color': 'rgba(59, 130, 246, 0.12)',
+          'color': '#60a5fa',
+          'border-color': 'rgba(59, 130, 246, 0.4)',
+          'width': '40px',
+          'height': '40px',
+          'font-size': '10px'
+        }
+      },
       {
         selector: 'node[type = "dataproperty"]',
         style: {
@@ -848,24 +914,21 @@ function initGraph() {
     }
   });
 
-  // =========================================================================
-  // INTERAKTIVE FILTER & ANSICHTS-LOGIK (inkl. Data Properties)
-  // =========================================================================
-
+  // Filter-Logik für die Toolbar
   function applyGraphFilters() {
     if (!cy) return;
 
     const showExp = document.getElementById('filter-node-exp')?.checked ?? true;
     const showSkill = document.getElementById('filter-node-skill')?.checked ?? true;
     const showTech = document.getElementById('filter-node-tech')?.checked ?? true;
-    const showData = document.getElementById('filter-node-data')?.checked ?? true; // NEU
+    const showData = document.getElementById('filter-node-data')?.checked ?? true;
 
     cy.batch(() => {
       cy.nodes().forEach(node => {
         const type = node.data('type');
-        if (type === 'person') {
-          node.show();
-        } else if (type === 'skill') {
+        if (type === 'person' || type === 'category') {
+          node.show(); // Person und Kategorien bleiben immer da
+        } else if (type === 'skill' || type === 'language') {
           showSkill ? node.show() : node.hide();
         } else if (type === 'tech') {
           showTech ? node.show() : node.hide();
@@ -878,23 +941,16 @@ function initGraph() {
     });
   }
 
-  // Wichtig: Auch den Event-Listener für die neue Checkbox registrieren!
   document.getElementById('filter-node-exp')?.addEventListener('change', applyGraphFilters);
   document.getElementById('filter-node-skill')?.addEventListener('change', applyGraphFilters);
   document.getElementById('filter-node-tech')?.addEventListener('change', applyGraphFilters);
   document.getElementById('filter-node-data')?.addEventListener('change', applyGraphFilters);
+
   const layoutSelect = document.getElementById('graph-layout-select');
   if (layoutSelect) {
     layoutSelect.onchange = (e) => {
       if (!cy) return;
-      const layoutName = e.target.value;
-      const layout = cy.layout({
-        name: layoutName,
-        animate: true,
-        animationDuration: 500,
-        padding: 30
-      });
-      layout.run();
+      cy.layout({ name: e.target.value, animate: true, animationDuration: 500,padding: 30 }).run();
     };
   }
 
@@ -902,10 +958,7 @@ function initGraph() {
   if (fitBtn) {
     fitBtn.onclick = () => {
       if (!cy) return;
-      cy.animate({
-        fit: { padding: 30 },
-        duration: 400
-      });
+      cy.animate({ fit: { padding: 30 }, duration: 400 });
     };
   }
 }
