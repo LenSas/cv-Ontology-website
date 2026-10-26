@@ -791,6 +791,9 @@ function initGraph() {
           'line-color': '#1e293b',
           'curve-style': 'bezier',
           'opacity': 0.8
+          'target-arrow-shape': 'triangle',   // Form des Pfeils (z.B. 'triangle', 'vee', 'chevron')
+          'target-arrow-color': '#38bdf8',   // Farbe der Pfeilspitze (hier im Akzent-Blau)
+          'arrow-scale': 0.8                 // Skalierung/Größe der Pfeilspitze
         }
       }
     ],
