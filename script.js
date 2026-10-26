@@ -913,6 +913,73 @@ function initGraph() {
       padding: 30
     }
   });
+  // =========================================================================
+  // KECK-INTERAKTION: KNOTEN-DETAILS & RELATIONS-POPUP
+  // =========================================================================
+  const graphModal = document.getElementById('graph-node-modal');
+  const modalTitle = document.getElementById('modal-node-title');
+  const modalRelations = document.getElementById('modal-node-relations');
+  const closeGraphModal = document.getElementById('close-graph-modal');
+
+  if (closeGraphModal && graphModal) {
+    closeGraphModal.onclick = () => {
+      graphModal.style.display = 'none';
+    };
+  }
+
+  // Klick auf einen beliebigen Knoten im Graphen
+  cy.on('tap', 'node', (evt) => {
+    const node = evt.target;
+    const nodeLabel = node.data('label') || node.id();
+    const nodeType = node.data('type');
+
+    if (modalTitle) modalTitle.textContent = `${nodeLabel} (${nodeType})`;
+
+    if (modalRelations) {
+      modalRelations.innerHTML = '';
+
+      // Alle verbundenen Kanten (eingehend und ausgehend) ermitteln
+      const connectedEdges = node.connectedEdges();
+
+      if (connectedEdges.length === 0) {
+        modalRelations.innerHTML = '<em>Keine direkten Beziehungen gefunden.</em>';
+      } else {
+        connectedEdges.forEach(edge => {
+          const sourceNode = edge.source();
+          const targetNode = edge.target();
+          const relationName = edge.data('label') || 'verknüpft mit';
+
+          // Text dynamisch aufbauen (Wer ist mit wem über welche Relation verbunden?)
+          let relationText = '';
+          if (sourceNode.id() === node.id()) {
+            // Ausgehende Beziehung: Dieser Knoten -> Ziel
+            relationText = `<span style="color: var(--primary);">&rarr; [${relationName}]</span> &rarr; <strong>${targetNode.data('label')}</strong>`;
+          } else {
+            // Eingehende Beziehung: Quelle -> Dieser Knoten
+            relationText = `<strong>${sourceNode.data('label')}</strong> <span style="color: var(--accent);">&rarr; [${relationName}]</span> &rarr; `;
+          }
+
+          const div = document.createElement('div');
+          div.style.padding = '0.25rem 0';
+          div.style.borderBottom = '1px solid var(--border-subtle)';
+          div.innerHTML = relationText;
+          modalRelations.appendChild(div);
+        });
+      }
+    }
+
+    // Popup einblenden
+    if (graphModal) {
+      graphModal.style.display = 'block';
+    }
+  });
+
+  // Klick auf den leeren Hintergrund schließt das Popup wieder
+  cy.on('tap', (evt) => {
+    if (evt.target === cy && graphModal) {
+      graphModal.style.display = 'none';
+    }
+  });
 
   // Filter-Logik für die Toolbar
   function applyGraphFilters() {
