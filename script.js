@@ -54,6 +54,14 @@ function initTabs() {
       });
       const tabPane = document.getElementById(`tab-${targetTab}`);
       if (tabPane) tabPane.classList.add('active');
+
+      // NEU: Graph initialisieren und Größe anpassen, sobald der "Knowledge Graph"-Tab aktiv wird
+      if (targetTab === 'graph') {
+        setTimeout(() => {
+          initGraph();
+          if (cy) cy.resize();
+        }, 50);
+      }
     });
   });
 }
@@ -680,7 +688,9 @@ function initGraph() {
   const container = document.getElementById('graph-container');
   if (!container || typeof cytoscape === 'undefined') return;
 
-  const personName = (typeof personData !== 'undefined' && personData && personData.name) ? personData.name : 'S. L. Scheske';
+  const personInd = store ? store.any(undefined, RDF('type'), CV('Person')) : null;
+  const personName = personInd ? (getDataProp(personInd, CV('fullName')) || getLabel(personInd)) : 'Sascha Leander Scheske';
+
   const elements = [];
 
   elements.push({
