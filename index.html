@@ -98,26 +98,81 @@
 
     <section id="tab-graph" class="tab-pane" role="tabpanel">
       <div id="graph-wrapper" style="position: relative;">
-        <button id="fullscreen-btn" type="button" aria-label="Vollbild umschalten" style="
-          position: absolute;
-          top: 15px;
-          right: 15px;
-          z-index: 10;
-          background: var(--filter-bg);
-          border: 1px solid var(--border-color);
-          color: var(--text-main);
-          padding: 0.5rem 0.8rem;
-          border-radius: 6px;
-          cursor: pointer;
-          font-size: 0.85rem;
-          font-weight: 600;
+        
+        <!-- Graph-Filter & Ansichtsoptionen -->
+        <div class="graph-toolbar" style="
           display: flex;
+          flex-wrap: wrap;
           align-items: center;
-          gap: 0.4rem;
-          transition: var(--transition);
+          justify-content: space-between;
+          gap: 1rem;
+          margin-bottom: 1rem;
+          padding: 0.75rem 1rem;
+          background: var(--card-bg);
+          border: 1px solid var(--border-color);
+          border-radius: var(--radius);
         ">
-          <span id="fullscreen-icon">⛶</span> Vollbild
-        </button>
+          <!-- Filter nach Knoten-Typen -->
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Anzeigen:</span>
+            <label style="font-size: 0.85rem; color: var(--text-main); cursor: pointer; display: flex; align-items: center; gap: 0.3rem;">
+              <input type="checkbox" id="filter-node-exp" checked> Experiences
+            </label>
+            <label style="font-size: 0.85rem; color: #2dd4bf; cursor: pointer; display: flex; align-items: center; gap: 0.3rem;">
+              <input type="checkbox" id="filter-node-skill" checked> Skills
+            </label>
+            <label style="font-size: 0.85rem; color: #e879f9; cursor: pointer; display: flex; align-items: center; gap: 0.3rem;">
+              <input type="checkbox" id="filter-node-tech" checked> Technologies
+            </label>
+          </div>
+
+          <!-- Ansicht / Layouts & Aktionen -->
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <select id="graph-layout-select" style="
+              background: var(--filter-bg);
+              border: 1px solid var(--border-color);
+              color: var(--text-main);
+              padding: 0.4rem 0.6rem;
+              border-radius: 6px;
+              font-size: 0.85rem;
+              cursor: pointer;
+            ">
+              <option value="cose">Layout: Organisch (cose)</option>
+              <option value="concentric">Layout: Konzentrisch (Kreise)</option>
+              <option value="breadthfirst">Layout: Hierarchisch (Baum)</option>
+              <option value="grid">Layout: Raster (Grid)</option>
+            </select>
+
+            <button id="graph-fit-btn" type="button" style="
+              background: var(--filter-bg);
+              border: 1px solid var(--border-color);
+              color: var(--text-main);
+              padding: 0.4rem 0.75rem;
+              border-radius: 6px;
+              font-size: 0.85rem;
+              cursor: pointer;
+              font-weight: 600;
+            ">Zentrieren</button>
+
+            <button id="fullscreen-btn" type="button" aria-label="Vollbild umschalten" style="
+              background: var(--filter-bg);
+              border: 1px solid var(--border-color);
+              color: var(--text-main);
+              padding: 0.4rem 0.75rem;
+              border-radius: 6px;
+              cursor: pointer;
+              font-size: 0.85rem;
+              font-weight: 600;
+              display: flex;
+              align-items: center;
+              gap: 0.4rem;
+              transition: var(--transition);
+            ">
+              <span id="fullscreen-icon">⛶</span> Vollbild
+            </button>
+          </div>
+        </div>
+
         <div id="graph-container"></div>
       </div>
     </section>
