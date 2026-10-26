@@ -796,3 +796,46 @@ function initGraph() {
     }
   });
 }
+
+/**
+ * Vollbild-Logik für den Knowledge Graph (YouTube-Style Button)
+ */
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+const graphWrapper = document.getElementById('graph-wrapper');
+
+if (fullscreenBtn && graphWrapper) {
+  fullscreenBtn.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      if (graphWrapper.requestFullscreen) {
+        graphWrapper.requestFullscreen();
+      } else if (graphWrapper.webkitRequestFullscreen) { /* Safari */
+        graphWrapper.webkitRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (graphWrapper.webkitExitFullscreen) { /* Safari */
+        graphWrapper.webkitExitFullscreen();
+      }
+    }
+  });
+
+  document.addEventListener('fullscreenchange', handleFullscreenChange);
+  document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+}
+
+function handleFullscreenChange() {
+  const isFullscreen = !!document.fullscreenElement;
+  const icon = document.getElementById('fullscreen-icon');
+  
+  if (icon) {
+    icon.textContent = isFullscreen ? '🗗' : '⛶';
+  }
+
+  if (cy) {
+    setTimeout(() => {
+      cy.resize();
+      cy.fit();
+    }, 100);
+  }
+}
