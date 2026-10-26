@@ -698,9 +698,8 @@ function initGraph() {
     data: { id: 'Person', label: personName, type: 'person' }
   });
 
-  // NEU: Direkte hasSkill oder hasLanguage Relationen aus der Ontologie auslesen (falls vorhanden)
+  // Direkte hasSkill oder hasLanguage Relationen aus der Ontologie auslesen
   if (personInd && store) {
-    // Skills direkt mit Person verknüpfen (hasSkill)
     const directSkills = store.each(personInd, CV('hasSkill'));
     directSkills.forEach(skillNode => {
       const skillLabel = getLabel(skillNode);
@@ -712,7 +711,6 @@ function initGraph() {
       elements.push({ data: { source: 'Person', target: skillId, label: 'hasSkill' } });
     });
 
-    // Sprachen direkt mit Person verknüpfen (hasLanguage)
     const languages = store.each(personInd, CV('hasLanguage'));
     languages.forEach(langNode => {
       const langLabel = getLabel(langNode);
@@ -743,7 +741,6 @@ function initGraph() {
       data: { id: item.iriId, label: item.title, type: item.category }
     });
 
-    // Verbinde die Experience mit ihrer jeweiligen Kategorie statt direkt mit der Person
     const parentCatId = categoriesMap[item.category]?.id || 'Person';
     elements.push({
       data: { source: parentCatId, target: item.iriId, label: 'includes' }
@@ -791,6 +788,7 @@ function initGraph() {
     cy.destroy();
   }
 
+  // Modernisiertes, professionelles Cytoscape-Design (Helles Theme)
   cy = cytoscape({
     container,
     elements,
@@ -799,79 +797,85 @@ function initGraph() {
         selector: 'node',
         style: {
           'label': 'data(label)',
-          'color': '#f1f5f9',
+          'color': '#0f172a',
           'font-size': '11px',
+          'font-weight': '500',
           'text-valign': 'bottom',
-          'text-margin-y': 6,
-          'background-color': '#131c2e',
+          'text-margin-y': 8,
+          'background-color': '#ffffff',
           'border-width': 2,
-          'border-color': '#1e293b',
-          'width': '45px',
-          'height': '45px',
-          'text-background-opacity': 0.7,
-          'text-background-color': '#0b0f19',
-          'text-background-padding': '2px',
+          'border-color': '#cbd5e1',
+          'width': '46px',
+          'height': '46px',
+          'text-background-opacity': 0.9,
+          'text-background-color': '#ffffff',
+          'text-background-padding': '4px',
           'text-background-shape': 'roundrectangle',
+          'text-border-color': '#e2e8f0',
+          'text-border-width': 1,
           'z-index': 10
         }
       },
       {
         selector: 'node[type = "person"]',
         style: {
-          'background-color': '#38bdf8',
+          'background-color': '#0284c7',
           'color': '#ffffff',
           'font-weight': 'bold',
-          'width': '70px',
-          'height': '70px',
-          'border-color': '#0ea5e9',
+          'width': '75px',
+          'height': '75px',
+          'border-color': '#0369a1',
+          'border-width': 3,
           'text-valign': 'center',
-          'text-margin-y': 0
+          'text-margin-y': 0,
+          'text-background-opacity': 0
         }
       },
-      // Styling für Kategorie-Knoten (Subklassen von Experience)
       {
         selector: 'node[type = "category"]',
         style: {
           'background-color': '#6366f1',
           'color': '#ffffff',
           'font-weight': 'bold',
-          'width': '60px',
-          'height': '60px',
+          'width': '65px',
+          'height': '65px',
           'border-color': '#4f46e5',
+          'border-width': 2,
           'text-valign': 'center',
-          'text-margin-y': 0
+          'text-margin-y': 0,
+          'text-background-opacity': 0
         }
       },
       {
         selector: 'node[type = "skill"]',
         style: {
-          'background-color': 'rgba(45, 212, 191, 0.12)',
-          'color': '#2dd4bf',
-          'border-color': 'rgba(45, 212, 191, 0.4)',
-          'width': '45px',
-          'height': '45px',
+          'background-color': '#ccfbf1',
+          'color': '#0f766e',
+          'border-color': '#2dd4bf',
+          'width': '48px',
+          'height': '48px',
           'font-size': '10px'
         }
       },
       {
         selector: 'node[type = "tech"]',
         style: {
-          'background-color': 'rgba(232, 121, 249, 0.12)',
-          'color': '#e879f9',
-          'border-color': 'rgba(232, 121, 249, 0.4)',
-          'width': '45px',
-          'height': '45px',
+          'background-color': '#f3e8ff',
+          'color': '#7e22ce',
+          'border-color': '#c084fc',
+          'width': '48px',
+          'height': '48px',
           'font-size': '10px'
         }
       },
       {
         selector: 'node[type = "language"]',
         style: {
-          'background-color': 'rgba(59, 130, 246, 0.12)',
-          'color': '#60a5fa',
-          'border-color': 'rgba(59, 130, 246, 0.4)',
-          'width': '40px',
-          'height': '40px',
+          'background-color': '#e0f2fe',
+          'color': '#0369a1',
+          'border-color': '#38bdf8',
+          'width': '42px',
+          'height': '42px',
           'font-size': '10px'
         }
       },
@@ -879,40 +883,48 @@ function initGraph() {
         selector: 'node[type = "dataproperty"]',
         style: {
           'shape': 'roundrectangle',
-          'background-color': 'rgba(245, 158, 11, 0.12)',
-          'color': '#fbbf24',
-          'border-color': 'rgba(245, 158, 11, 0.4)',
-          'width': '35px',
-          'height': '30px',
+          'background-color': '#fef3c7',
+          'color': '#b45309',
+          'border-color': '#f59e0b',
+          'width': '38px',
+          'height': '32px',
           'font-size': '9px',
           'text-valign': 'center',
-          'text-margin-y': 0
+          'text-margin-y': 0,
+          'text-background-opacity': 0
         }
       },
       {
         selector: 'edge',
         style: {
           'label': 'data(label)',
-          'color': '#94a3b8',
+          'color': '#475569',
           'font-size': '9px',
+          'font-weight': '500',
           'text-rotation': 'autorotate',
           'text-margin-y': -8,
-          'width': 2,
-          'line-color': '#1e293b',
+          'text-background-opacity': 0.85,
+          'text-background-color': '#ffffff',
+          'text-background-padding': '2px',
+          'width': 1.5,
+          'line-color': '#cbd5e1',
           'curve-style': 'bezier',
-          'opacity': 0.8,
+          'opacity': 0.85,
           'target-arrow-shape': 'triangle',
-          'target-arrow-color': '#38bdf8',
-          'arrow-scale': 0.8
+          'target-arrow-color': '#94a3b8',
+          'arrow-scale': 0.75
         }
       }
     ],
     layout: {
       name: 'cose',
       animate: true,
-      padding: 30
+      padding: 40,
+      nodeRepulsion: 4500,
+      idealEdgeLength: 60
     }
   });
+
   // =========================================================================
   // KECK-INTERAKTION: KNOTEN-DETAILS & RELATIONS-POPUP
   // =========================================================================
@@ -927,7 +939,6 @@ function initGraph() {
     };
   }
 
-  // Klick auf einen beliebigen Knoten im Graphen
   cy.on('tap', 'node', (evt) => {
     const node = evt.target;
     const nodeLabel = node.data('label') || node.id();
@@ -937,8 +948,6 @@ function initGraph() {
 
     if (modalRelations) {
       modalRelations.innerHTML = '';
-
-      // Alle verbundenen Kanten (eingehend und ausgehend) ermitteln
       const connectedEdges = node.connectedEdges();
 
       if (connectedEdges.length === 0) {
@@ -949,13 +958,10 @@ function initGraph() {
           const targetNode = edge.target();
           const relationName = edge.data('label') || 'verknüpft mit';
 
-          // Text dynamisch aufbauen (Wer ist mit wem über welche Relation verbunden?)
           let relationText = '';
           if (sourceNode.id() === node.id()) {
-            // Ausgehende Beziehung: Dieser Knoten -> Ziel
             relationText = `<span style="color: var(--primary);">&rarr; [${relationName}]</span> &rarr; <strong>${targetNode.data('label')}</strong>`;
           } else {
-            // Eingehende Beziehung: Quelle -> Dieser Knoten
             relationText = `<strong>${sourceNode.data('label')}</strong> <span style="color: var(--accent);">&rarr; [${relationName}]</span> &rarr; `;
           }
 
@@ -968,13 +974,11 @@ function initGraph() {
       }
     }
 
-    // Popup einblenden
     if (graphModal) {
       graphModal.style.display = 'block';
     }
   });
 
-  // Klick auf den leeren Hintergrund schließt das Popup wieder
   cy.on('tap', (evt) => {
     if (evt.target === cy && graphModal) {
       graphModal.style.display = 'none';
@@ -994,7 +998,7 @@ function initGraph() {
       cy.nodes().forEach(node => {
         const type = node.data('type');
         if (type === 'person' || type === 'category') {
-          node.show(); // Person und Kategorien bleiben immer da
+          node.show();
         } else if (type === 'skill' || type === 'language') {
           showSkill ? node.show() : node.hide();
         } else if (type === 'tech') {
@@ -1017,7 +1021,7 @@ function initGraph() {
   if (layoutSelect) {
     layoutSelect.onchange = (e) => {
       if (!cy) return;
-      cy.layout({ name: e.target.value, animate: true, animationDuration: 500,padding: 30 }).run();
+      cy.layout({ name: e.target.value, animate: true, animationDuration: 500, padding: 40 }).run();
     };
   }
 
@@ -1025,7 +1029,7 @@ function initGraph() {
   if (fitBtn) {
     fitBtn.onclick = () => {
       if (!cy) return;
-      cy.animate({ fit: { padding: 30 }, duration: 400 });
+      cy.animate({ fit: { padding: 40 }, duration: 400 });
     };
   }
 }
