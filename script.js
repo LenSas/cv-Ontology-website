@@ -698,6 +698,7 @@ function initGraph() {
   });
 
   allEntries.forEach(item => {
+    // 1. Hauptknoten (Experience / Projekt / Education)
     elements.push({
       data: { id: item.iriId, label: item.title, type: item.category }
     });
@@ -706,6 +707,26 @@ function initGraph() {
       data: { source: 'Person', target: item.iriId, label: item.category }
     });
 
+    // 2. Data Properties als eigene eckige Knoten anfügen
+    if (item.startDate) {
+      const startId = `prop_start_${item.iriId}`;
+      elements.push({ data: { id: startId, label: `startDate: ${item.startDate}`, type: 'dataproperty' } });
+      elements.push({ data: { source: item.iriId, target: startId, label: 'startDate' } });
+    }
+
+    if (item.endDate) {
+      const endId = `prop_end_${item.iriId}`;
+      elements.push({ data: { id: endId, label: `endDate: ${item.endDate}`, type: 'dataproperty' } });
+      elements.push({ data: { source: item.iriId, target: endId, label: 'endDate' } });
+    }
+
+    if (item.company) {
+      const compId = `prop_comp_${item.iriId}`;
+      elements.push({ data: { id: compId, label: item.company, type: 'dataproperty' } });
+      elements.push({ data: { source: item.iriId, target: compId, label: 'companyName' } });
+    }
+
+    // 3. Skills
     (item.skills || []).forEach(skill => {
       const skillId = 'skill_' + skill.label.replace(/\s+/g, '_');
       if (!elements.some(e => e.data.id === skillId)) {
@@ -714,6 +735,7 @@ function initGraph() {
       elements.push({ data: { source: item.iriId, target: skillId, label: 'learnedSkill' } });
     });
 
+    // 4. Technologies
     (item.technologies || []).forEach(tech => {
       const techId = 'tech_' + tech.label.replace(/\s+/g, '_');
       if (!elements.some(e => e.data.id === techId)) {
@@ -737,18 +759,18 @@ function initGraph() {
           'label': 'data(label)',
           'color': '#f1f5f9',
           'font-size': '11px',
-          'text-valign': 'bottom',          // Platzierung unterhalb des Balls
-          'text-margin-y': 6,               // Kleiner Abstand zum Ball
+          'text-valign': 'bottom',          // Platzierung unterhalb des Knotens
+          'text-margin-y': 6,               // Kleiner Abstand
           'background-color': '#131c2e',
           'border-width': 2,
           'border-color': '#1e293b',
           'width': '45px',
           'height': '45px',
           'text-background-opacity': 0.7,   // Halbtransparenter Hintergrund für Lesbarkeit
-          'text-background-color': '#0b0f19', // Hintergrundfarbe passend zum Website-Design
-          'text-background-padding': '2px', // Innenabstand für das Text-Feld
+          'text-background-color': '#0b0f19', // Hintergrundfarbe passend zum Design
+          'text-background-padding': '2px', 
           'text-background-shape': 'roundrectangle',
-          'z-index': 10                     // Stellt sicher, dass Texte ÜBER Kanten gerendert werden
+          'z-index': 10                     
         }
       },
       {
@@ -760,7 +782,7 @@ function initGraph() {
           'width': '65px',
           'height': '65px',
           'border-color': '#0ea5e9',
-          'text-valign': 'center',          // Die Hauptperson behält die Schrift z.B. im Ball
+          'text-valign': 'center',          
           'text-margin-y': 0
         }
       },
@@ -784,6 +806,21 @@ function initGraph() {
           'width': '45px',
           'height': '45px',
           'font-size': '10px'
+        }
+      },
+      // NEU: Stil für Data-Properties (typisch: eckig / rechteckig)
+      {
+        selector: 'node[type = "dataproperty"]',
+        style: {
+          'shape': 'roundrectangle',
+          'background-color': 'rgba(245, 158, 11, 0.12)',
+          'color': '#fbbf24',
+          'border-color': 'rgba(245, 158, 11, 0.4)',
+          'width': '35px',
+          'height': '30px',
+          'font-size': '9px',
+          'text-valign': 'center',
+          'text-margin-y': 0
         }
       },
       {
@@ -812,7 +849,7 @@ function initGraph() {
   });
 
   // =========================================================================
-  // NEU: INTERAKTIVE FILTER & ANSICHTS-LOGIK FÜR DEN GRAPHEN
+  // INTERAKTIVE FILTER & ANSICHTS-LOGIK (inkl. Data Properties)
   // =========================================================================
 
   function applyGraphFilters() {
@@ -831,6 +868,8 @@ function initGraph() {
           showSkill ? node.show() : node.hide();
         } else if (type === 'tech') {
           showTech ? node.show() : node.hide();
+        } else if (type === 'dataproperty') {
+          showExp ? node.show() : node.hide(); // Hängt an den Experiences
         } else {
           showExp ? node.show() : node.hide();
         }
@@ -838,15 +877,12 @@ function initGraph() {
     });
   }
 
-  // Event-Listener für die Checkboxen in der Toolbar
   document.getElementById('filter-node-exp')?.addEventListener('change', applyGraphFilters);
   document.getElementById('filter-node-skill')?.addEventListener('change', applyGraphFilters);
   document.getElementById('filter-node-tech')?.addEventListener('change', applyGraphFilters);
 
-  // Layout umschalten über das Dropdown-Menü
   const layoutSelect = document.getElementById('graph-layout-select');
   if (layoutSelect) {
-    // Event-Listener sicherheitshalber vorher bereinigen, um doppelte Ausführung zu verhindern
     layoutSelect.onchange = (e) => {
       if (!cy) return;
       const layoutName = e.target.value;
@@ -860,7 +896,6 @@ function initGraph() {
     };
   }
 
-  // Graph zentrieren über den Button
   const fitBtn = document.getElementById('graph-fit-btn');
   if (fitBtn) {
     fitBtn.onclick = () => {
