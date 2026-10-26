@@ -852,12 +852,13 @@ function initGraph() {
   // INTERAKTIVE FILTER & ANSICHTS-LOGIK (inkl. Data Properties)
   // =========================================================================
 
-  function applyGraphFilters() {
+  ffunction applyGraphFilters() {
     if (!cy) return;
 
     const showExp = document.getElementById('filter-node-exp')?.checked ?? true;
     const showSkill = document.getElementById('filter-node-skill')?.checked ?? true;
     const showTech = document.getElementById('filter-node-tech')?.checked ?? true;
+    const showData = document.getElementById('filter-node-data')?.checked ?? true; // NEU
 
     cy.batch(() => {
       cy.nodes().forEach(node => {
@@ -869,7 +870,7 @@ function initGraph() {
         } else if (type === 'tech') {
           showTech ? node.show() : node.hide();
         } else if (type === 'dataproperty') {
-          showExp ? node.show() : node.hide(); // Hängt an den Experiences
+          showData ? node.show() : node.hide();
         } else {
           showExp ? node.show() : node.hide();
         }
@@ -877,10 +878,11 @@ function initGraph() {
     });
   }
 
+  // Wichtig: Auch den Event-Listener für die neue Checkbox registrieren!
   document.getElementById('filter-node-exp')?.addEventListener('change', applyGraphFilters);
   document.getElementById('filter-node-skill')?.addEventListener('change', applyGraphFilters);
   document.getElementById('filter-node-tech')?.addEventListener('change', applyGraphFilters);
-
+  document.getElementById('filter-node-data')?.addEventListener('change', applyGraphFilters);
   const layoutSelect = document.getElementById('graph-layout-select');
   if (layoutSelect) {
     layoutSelect.onchange = (e) => {
