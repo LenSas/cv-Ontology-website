@@ -97,7 +97,29 @@
     </section>
 
     <section id="tab-graph" class="tab-pane" role="tabpanel">
-      <div id="graph-container"></div>
+      <div id="graph-wrapper" style="position: relative;">
+        <button id="fullscreen-btn" type="button" aria-label="Vollbild umschalten" style="
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          z-index: 10;
+          background: var(--filter-bg);
+          border: 1px solid var(--border-color);
+          color: var(--text-main);
+          padding: 0.5rem 0.8rem;
+          border-radius: 6px;
+          cursor: pointer;
+          font-size: 0.85rem;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          transition: var(--transition);
+        ">
+          <span id="fullscreen-icon">⛶</span> Vollbild
+        </button>
+        <div id="graph-container"></div>
+      </div>
     </section>
   </div>
 
