@@ -852,7 +852,7 @@ function initGraph() {
   // INTERAKTIVE FILTER & ANSICHTS-LOGIK (inkl. Data Properties)
   // =========================================================================
 
-  ffunction applyGraphFilters() {
+  function applyGraphFilters() {
     if (!cy) return;
 
     const showExp = document.getElementById('filter-node-exp')?.checked ?? true;
