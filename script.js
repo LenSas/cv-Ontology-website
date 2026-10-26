@@ -737,24 +737,31 @@ function initGraph() {
           'label': 'data(label)',
           'color': '#f1f5f9',
           'font-size': '11px',
-          'text-valign': 'center',
-          'text-halign': 'center',
+          'text-valign': 'bottom',          // NEU: Platzierung unterhalb des Balls
+          'text-margin-y': 6,               // NEU: Kleiner Abstand zum Ball
           'background-color': '#131c2e',
           'border-width': 2,
           'border-color': '#1e293b',
-          'width': '55px',
-          'height': '55px'
+          'width': '45px',
+          'height': '45px',
+          'text-background-opacity': 0.7,   // NEU: Halbtransparenter Hintergrund für Lesbarkeit
+          'text-background-color': '#0b0f19', // NEU: Hintergrundfarbe passend zum Website-Design
+          'text-background-padding': '2px', // NEU: Innenabstand für das Text-Feld
+          'text-background-shape': 'roundrectangle',
+          'z-index': 10                     // NEU: Stellt sicher, dass Texte ÜBER Kanten gerendert werden
         }
       },
       {
         selector: 'node[type = "person"]',
         style: {
           'background-color': '#38bdf8',
-          'color': '#0b0f19',
+          'color': '#ffffff',
           'font-weight': 'bold',
-          'width': '75px',
-          'height': '75px',
-          'border-color': '#0ea5e9'
+          'width': '65px',
+          'height': '65px',
+          'border-color': '#0ea5e9',
+          'text-valign': 'center',          // Die Hauptperson kann die Schrift z.B. im Ball behalten
+          'text-margin-y': 0
         }
       },
       {
@@ -782,18 +789,18 @@ function initGraph() {
       {
         selector: 'edge',
         style: {
-          'label': 'data(label)',          // NEU: Zeigt den Label-Wert der Kante an
-          'color': '#94a3b8',              // Textfarbe für den Relationsnamen
-          'font-size': '9px',              // Kleine, dezente Schriftgröße
-          'text-rotation': 'autorotate',   // Dreht den Text passend zur Kantenrichtung
-          'text-margin-y': -8,             // Verschiebt den Text leicht über die Linie
+          'label': 'data(label)',
+          'color': '#94a3b8',
+          'font-size': '9px',
+          'text-rotation': 'autorotate',
+          'text-margin-y': -8,
           'width': 2,
           'line-color': '#1e293b',
           'curve-style': 'bezier',
-          'opacity': 0.8
-          'target-arrow-shape': 'triangle',   // Form des Pfeils (z.B. 'triangle', 'vee', 'chevron')
-          'target-arrow-color': '#38bdf8',   // Farbe der Pfeilspitze (hier im Akzent-Blau)
-          'arrow-scale': 0.8                 // Skalierung/Größe der Pfeilspitze
+          'opacity': 0.8,
+          'target-arrow-shape': 'triangle',
+          'target-arrow-color': '#38bdf8',
+          'arrow-scale': 0.8
         }
       }
     ],
