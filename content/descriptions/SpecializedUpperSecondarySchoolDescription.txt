@@ -1,0 +1,9 @@
+During my studies at Vocational Upper Secondary School (FOS Ansbach), specializing in technology, I developed a foundation in technical and scientific subjects such as thermodynamics, physics, mathematics, and introductory programming, alongside general subjects including German and English.
+
+A major part of my education involved hands-on technical training. In the metalworking workshop, I learned basic machining techniques such as turning, drilling, and thread cutting. One of my main projects was building a working Stirling engine, which involved machining individual metal components to specific dimensions and assembling them.
+
+In the electrical engineering workshop, I gained practical experience in soldering, building electrical circuits, and designing circuit layouts using software. For one project, I built an electronic dice that displayed a randomly generated number using LEDs when a button was pressed.
+
+I also completed a two-week internship at a company specializing in refrigeration and air conditioning technology, where I gained initial insights into the installation and implementation of technical systems and observed practical work in an industrial environment.
+
+Through these experiences, I developed an early understanding of engineering principles, basic workshop skills, and a practical approach to technical problem-solving.
