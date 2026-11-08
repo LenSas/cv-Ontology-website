@@ -1,0 +1,9 @@
+During my Bachelor of Engineering in Technical Communication at Munich University of Applied Sciences, I developed a broad understanding of how technical information is created, structured, managed, and communicated. I combined theoretical knowledge with practical assignments, semester-long projects, and a professional internship.
+
+I learned the fundamentals of technical writing and documentation, working with topic-based documentation, structured content, and documentation workflows. I gained practical experience with DITA and XML-based documentation and explored how Component Content Management Systems (CCMS) support content reuse and efficient information management. I also studied standards such as iiRDS and developed an understanding of metadata management, information architecture, and Knowledge Management.
+
+Another important part of my studies focused on semantic technologies and knowledge modelling. I worked with concepts such as ontologies, taxonomies, and knowledge graphs, using tools like Protégé to explore how information can be structured, connected, and represented in a meaningful way.
+
+Alongside information management, I gained experience in visual and media-based communication. I created instructional videos and product tutorials, worked with 3D animation and product photography, and used graphic design tools such as Affinity Publisher to produce communication materials.
+
+Through semester-long projects, including Agile Project Management approaches, I learned to collaborate in project teams, organize tasks, and apply theoretical concepts to practical challenges. My studies and practical internship helped me understand how technical communication connects engineering, information management, and user-oriented communication in a professional environment.
